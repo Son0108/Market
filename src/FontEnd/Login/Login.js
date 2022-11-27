@@ -1,7 +1,7 @@
 import { Text, StyleSheet, View, ImageBackground, SafeAreaView, Image, TextInput, TouchableOpacity, Button } from 'react-native'
 import React, { Component } from 'react'
 
-export default class Welcome extends Component {
+export default class Login extends Component {
   render() {
     const {navigation} = this.props;
     return (
@@ -15,14 +15,14 @@ export default class Welcome extends Component {
 
               <View style={styles.content}>
                 <Text style={{color: '#fff', fontSize: 15, fontWeight: 'bold'}}>Tên đăng nhập</Text>
-                <View style={{backgroundColor:'#AB7082', marginTop: 4, borderRadius: 10, padding: 10, width:'70%', height: 40, flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                <View style={{borderWidth: 2,borderColor: '#AB7082',backgroundColor: '#fff', marginTop: 4, borderRadius: 10, padding: 10, width:'70%', height: 50, flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
                     <Image style={{display: 'flex',height:20, width: 20}} source={require('../assets/Images/user.png')}/>
                     <TextInput
                     style={{height:'100%', width:'90%'}}
                     />
                 </View>
                 <Text style={{marginTop: 20, color: '#fff', fontSize: 15, fontWeight: 'bold'}}>Mật khẩu</Text>
-                <View style={{backgroundColor:'#AB7082', marginTop: 4, borderRadius: 10, padding: 10, width:'70%', height: 40, flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                <View style={{borderWidth: 2,borderColor: '#AB7082',backgroundColor: '#fff', marginTop: 4, borderRadius: 10, padding: 10, width:'70%', height: 50, flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
                   <Image style={{display: 'flex',height:20, width: 20}} source={require('../assets/Images/password.png')}/>
                   <TextInput
                   style={{height:'100%', width:'90%'}}
@@ -31,13 +31,13 @@ export default class Welcome extends Component {
               </View>
 
               <View style={styles.footer}>
-              <TouchableOpacity style={styles.btnLogin}>
-                  <Text style={{color: '#fff',fontWeight: 'bold',fontSize: 20,}}>ĐĂNG NHẬP</Text>
-              </TouchableOpacity>
+                <TouchableOpacity onPress={() => {navigation.navigate('Home')}} style={styles.btnLogin}>
+                    <Text style={{color: '#fff',fontWeight: 'bold',fontSize: 20,}}>ĐĂNG NHẬP</Text>
+                </TouchableOpacity>
               <Text style={{color: '#fff',fontSize: 14}}>Bạn chưa có tài khoản?
-                  <TouchableOpacity onPress={() => {navigation.navigate('Register')}}>
+                <TouchableOpacity onPress={() => {navigation.navigate('Register')}}>
                   <Text style={{color: '#fff',fontSize: 14}}>Đăng kí</Text>
-                  </TouchableOpacity>
+                </TouchableOpacity>
               </Text>
               </View>
           </SafeAreaView >
