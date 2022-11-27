@@ -1,14 +1,15 @@
 import { Text, View } from 'react-native'
 import React, { Component } from 'react'
 
-export class HomeScreen extends Component {
+export class BoxChat extends Component {
   render() {
+    const {navigation} = this.props;
     return (
       <View>
-        <Text>HomeScreen</Text>
+        <Text>BoxChat</Text>
       </View>
     )
   }
 }
 
-export default HomeScreen
+export default BoxChat
