@@ -13,7 +13,7 @@ export default class RegisterSuccess extends Component {
                 </View>
 
                 <View style= {{justifyContent: "center",alignItems: 'center', marginTop: 50}}>
-                    <Text style = {{color:'#fff', fontWeight:'bold', fontSize: 20}}>Bạn đã đăng ký tài khoản thành công</Text>
+                    <Text style = {{color:'#FF6699', fontWeight:'bold', fontSize: 20}}>Bạn đã đăng ký tài khoản thành công</Text>
                 </View>
                 <View style={{justifyContent:'center', alignItems:'center', marginTop: 50}}>
                     <TouchableOpacity onPress={() => {navigation.navigate('Login')}} style={{ borderColor: '#AB7082',backgroundColor: '#AB7082',height: 50,width: '63%',borderRadius: 25,justifyContent: 'center',alignItems: 'center',textAlign: 'center',marginBottom: 40}}>

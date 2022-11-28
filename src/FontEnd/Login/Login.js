@@ -14,14 +14,14 @@ export default class Login extends Component {
               </View>
 
               <View style={styles.content}>
-                <Text style={{color: '#fff', fontSize: 15, fontWeight: 'bold'}}>Tên đăng nhập</Text>
+                <Text style={{color: '#FF3399', fontSize: 15, fontWeight: 'bold'}}>Tên đăng nhập</Text>
                 <View style={{borderWidth: 2,borderColor: '#AB7082',backgroundColor: '#fff', marginTop: 4, borderRadius: 10, padding: 10, width:'70%', height: 50, flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
                     <Image style={{display: 'flex',height:20, width: 20}} source={require('../assets/Images/user.png')}/>
                     <TextInput
                     style={{height:'100%', width:'90%'}}
                     />
                 </View>
-                <Text style={{marginTop: 20, color: '#fff', fontSize: 15, fontWeight: 'bold'}}>Mật khẩu</Text>
+                <Text style={{marginTop: 20, color: '#FF3399', fontSize: 15, fontWeight: 'bold'}}>Mật khẩu</Text>
                 <View style={{borderWidth: 2,borderColor: '#AB7082',backgroundColor: '#fff', marginTop: 4, borderRadius: 10, padding: 10, width:'70%', height: 50, flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
                   <Image style={{display: 'flex',height:20, width: 20}} source={require('../assets/Images/password.png')}/>
                   <TextInput
@@ -34,9 +34,9 @@ export default class Login extends Component {
                 <TouchableOpacity onPress={() => {navigation.navigate('Home')}} style={styles.btnLogin}>
                     <Text style={{color: '#fff',fontWeight: 'bold',fontSize: 20,}}>ĐĂNG NHẬP</Text>
                 </TouchableOpacity>
-              <Text style={{color: '#fff',fontSize: 14}}>Bạn chưa có tài khoản?
+              <Text style={{color: '#FF3399',fontSize: 14}}>Bạn chưa có tài khoản?
                 <TouchableOpacity onPress={() => {navigation.navigate('Register')}}>
-                  <Text style={{color: '#fff',fontSize: 14}}>Đăng kí</Text>
+                  <Text style={{color: '#990033',fontSize: 14}}>Đăng kí</Text>
                 </TouchableOpacity>
               </Text>
               </View>
@@ -64,14 +64,14 @@ const styles = StyleSheet.create({
       textAlign: 'center'
   },
   btnLogin: {
-      borderColor: '#AB7082',
-      backgroundColor: '#AB7082',
-      height: 50,
-      width: '63%',
-      borderRadius: 25,
-      justifyContent: 'center',
-      alignItems: 'center',
-      textAlign: 'center',
-      marginBottom: 40
+    borderColor: '#AB7082',
+    backgroundColor: '#AB7082',
+    height: 50,
+    width: '63%',
+    borderRadius: 25,
+    justifyContent: 'center',
+    alignItems: 'center',
+    textAlign: 'center',
+    marginBottom: 40
   }});
     

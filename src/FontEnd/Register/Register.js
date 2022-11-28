@@ -14,15 +14,15 @@ export default class Register extends Component {
           </View>
 
           <View style={{justifyContent:'center', alignItems:'center', marginTop: 40}}>
-            <Text style={{color: '#fff', fontSize: 15, fontWeight: 'bold'}}>Tên đăng nhập</Text>
+            <Text style={{color: '#FF3399', fontSize: 15, fontWeight: 'bold'}}>Tên đăng nhập</Text>
             <View style={{borderWidth: 2,borderColor: '#AB7082',backgroundColor: '#fff', marginTop: 4, borderRadius: 10, padding: 10, width:'70%', height: 50, flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
               <TextInput style={{height:'100%', width:'100%'}}/>
             </View>
-            <Text style={{color: '#fff', fontSize: 15, fontWeight: 'bold', marginTop: 20}}>Mật khẩu</Text>
+            <Text style={{color: '#FF3399', fontSize: 15, fontWeight: 'bold', marginTop: 20}}>Mật khẩu</Text>
             <View style={{borderWidth: 2,borderColor: '#AB7082',backgroundColor: '#fff', marginTop: 4, borderRadius: 10, padding: 10, width:'70%', height: 50, flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
               <TextInput style={{height:'100%', width:'100%'}}/>
             </View>
-            <Text style={{color: '#fff', fontSize: 15, fontWeight: 'bold', marginTop: 20}}>Xác nhận mật khẩu</Text>
+            <Text style={{color: '#FF3399', fontSize: 15, fontWeight: 'bold', marginTop: 20}}>Xác nhận mật khẩu</Text>
             <View style={{borderWidth: 2,borderColor: '#AB7082',backgroundColor: '#fff', marginTop: 4, borderRadius: 10, padding: 10, width:'70%', height: 50, flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
               <TextInput style={{height:'100%', width:'100%'}}/>
             </View>
