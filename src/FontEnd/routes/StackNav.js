@@ -11,10 +11,10 @@ const Stack = createStackNavigator();
 function StackNav() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Home" component={Login} />
+      <Stack.Screen name="App" component={Tabs}/>
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="RegisterSuccess" component={RegisterSuccess}/>
-      <Stack.Screen name="Home" component={Tabs}/>
       <Stack.Screen name="Shoppingcart" component={ShoppingCart}/>
     </Stack.Navigator>
   );

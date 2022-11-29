@@ -32,7 +32,7 @@ export default class Register extends Component {
           <TouchableOpacity onPress={() => {navigation.navigate('RegisterSuccess')}} style={{ borderColor: '#AB7082',backgroundColor: '#AB7082',height: 50,width: '63%',borderRadius: 25,justifyContent: 'center',alignItems: 'center',textAlign: 'center',marginBottom: 40}}>
               <Text style={{color: '#fff',fontWeight: 'bold',fontSize: 20,}}>ĐĂNG KÝ</Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {navigation.navigate('Login')}} style={{borderWidth: 2 ,borderColor: '#AB7082',backgroundColor: '#fff',height: 50,width: '63%',borderRadius: 25,justifyContent: 'center',alignItems: 'center',textAlign: 'center',marginBottom: 40}}>
+          <TouchableOpacity onPress={() => {navigation.navigate('App')}} style={{borderWidth: 2 ,borderColor: '#AB7082',backgroundColor: '#fff',height: 50,width: '63%',borderRadius: 25,justifyContent: 'center',alignItems: 'center',textAlign: 'center',marginBottom: 40}}>
               <Text style={{color: '#AB7082',fontWeight: 'bold',fontSize: 20,}}>QUAY LẠI</Text>
           </TouchableOpacity>
           </View>

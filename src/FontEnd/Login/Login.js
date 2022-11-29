@@ -31,7 +31,7 @@ export default class Login extends Component {
               </View>
 
               <View style={styles.footer}>
-                <TouchableOpacity onPress={() => {navigation.navigate('Home')}} style={styles.btnLogin}>
+                <TouchableOpacity onPress={() => {navigation.navigate('App')}} style={styles.btnLogin}>
                     <Text style={{color: '#fff',fontWeight: 'bold',fontSize: 20,}}>ĐĂNG NHẬP</Text>
                 </TouchableOpacity>
               <Text style={{color: '#FF3399',fontSize: 14}}>Bạn chưa có tài khoản?
