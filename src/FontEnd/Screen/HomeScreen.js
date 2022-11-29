@@ -1,4 +1,4 @@
-import { Image, SafeAreaView, Text, View } from 'react-native'
+import { Image, SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
 import { TextInput } from 'react-native-gesture-handler';
 
@@ -6,7 +6,7 @@ export class HomeScreen extends Component {
   render() {
     const {navigation} = this.props;
     return (
-      <SafeAreaView style={{backgroundColor: '#DDDDDD'}}>
+      <SafeAreaView style={{backgroundColor: '#DDDDDD', height: '100%'}}>
         <View style={{justifyContent:'center', alignItems:'center',width: '100%', backgroundColor: '#FF6699', height: 140}}>
           <Image style={{width:60, height: 60}} source={require('../assets/Images/logo.png')}/>
           <View style={{backgroundColor: '#fff',borderRadius: 5, width:'80%', height: 40, flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -16,18 +16,18 @@ export class HomeScreen extends Component {
         </View>
 
         <View style={{padding:30,flexDirection:'row', width: '100%', height: 80,alignItems:'center', justifyContent: 'space-between'}}>
-          <View>
+          <TouchableOpacity>
             <Image style={{width: 40,height: 40}} source={require('../assets/Images/voucher.png')}></Image>
             <Text>Voucher</Text>
-          </View>
-          <View style={{alignItems:'center'}}>
+          </TouchableOpacity>
+          <TouchableOpacity style={{alignItems:'center'}}>
             <Image style={{width: 40,height: 40}} source={require('../assets/Images/freeship.png')}></Image>
             <Text>Miễn phí vận chuyển</Text>
-          </View> 
-          <View>
-          <Image style={{width: 40,height: 40}} source={require('../assets/Images/shoppingcart.png')}></Image>
+          </TouchableOpacity> 
+          <TouchableOpacity onPress={() => {navigation.navigate('Shoppingcart')}}>
+            <Image style={{width: 40,height: 40}} source={require('../assets/Images/shoppingcart.png')}></Image>
             <Text>Giỏ hàng</Text>
-          </View>  
+          </TouchableOpacity>  
         </View>  
     
         <View style={{flexDirection:'row', width: '100%', height: 150, justifyContent: 'space-between'}}>

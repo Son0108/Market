@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import RegisterSuccess from "../Register/RegisterSuccess";
 import Tabs from "../Screen/Tabs";
+import ShoppingCart from "../Screen/Shopping/ShoppingCart";
 
 const Stack = createStackNavigator();
 
@@ -14,6 +15,7 @@ function StackNav() {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="RegisterSuccess" component={RegisterSuccess}/>
       <Stack.Screen name="Home" component={Tabs}/>
+      <Stack.Screen name="Shoppingcart" component={ShoppingCart}/>
     </Stack.Navigator>
   );
 }

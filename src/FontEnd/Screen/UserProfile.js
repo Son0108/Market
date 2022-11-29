@@ -1,14 +1,61 @@
-import { Text, View } from 'react-native'
+import { SafeAreaView, Text, View, Image , StyleSheet, TouchableOpacity} from 'react-native'
 import React, { Component } from 'react'
 
 export class UserProfile extends Component {
   render() {
     return (
-      <View>
-        <Text>UserProfile</Text>
-      </View>
+      <SafeAreaView style={{backgroundColor: '#DDDDDD', height: '100%'}}>
+        <View style={{width: '100%', backgroundColor: '#FF6699', height: 140}}>
+          <View style={{justifyContent:'center', alignItems:'center', marginTop: 10}}>
+            <Image style={{width:60, height: 60}} source={require('../assets/Images/logo.png')}/>
+          </View>
+          <View style={{flexDirection:'row'}}>
+            <Image style={{width: 60, height: 60, borderRadius: 40}} source={require('../assets/Avarta/avarta.jpg')}></Image>
+            <Text style={{padding: 15,color:'#fff', fontSize: 20}}>Admin</Text>
+          </View>
+        </View>
+
+        <View style={styles.list}>
+          <TouchableOpacity style={styles.wrapper} >
+            <Image style={styles.image} source={require('../assets/Profile/bill.png')}></Image>
+            <Text style={styles.text}>Đơn Mua</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.wrapper} >
+            <Text style={styles.text}>Số dư TK</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.wrapper} >
+            <Text style={styles.text}>LOG OUT</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
     )
   }
 }
 
+const styles = StyleSheet.create({
+  list: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  wrapper: {
+    justifyContent: 'center',
+    padding: 5,
+    marginTop:10,
+    height: 50,
+    width: '97%',
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#FF6699',
+    borderRadius: 5,
+    flexDirection: 'row'
+  },
+  text: {
+    fontSize: 15,
+    padding: 5
+  },
+  image: {
+    height: 30,
+    width: 30
+  }
+})
 export default UserProfile
