@@ -22,7 +22,7 @@ export class UserProfile extends Component {
         </View>
 
         <View style={styles.list}>
-          <TouchableOpacity style={styles.wrapper} >
+          <TouchableOpacity onPress={() => {navigation.navigate('Shoppingcart')}} style={styles.wrapper} >
             <Image style={styles.image} source={require('../assets/Profile/bill.png')}></Image>
             <Text style={styles.text}>Đơn Mua</Text>
           </TouchableOpacity>
@@ -57,7 +57,8 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 15,
-    padding: 5
+    padding: 5,
+    fontWeight:'bold'
   },
   image: {
     height: 30,

@@ -12,11 +12,11 @@ const Tab = createBottomTabNavigator();
 function Tabs() {
   return (
     <Tab.Navigator initialRouteName='Home' screenOptions={{headerShown: false}}>
-      <Tab.Screen name="Home" component={HomeScreen} options={{
+      <Tab.Screen name="Trang chủ" component={HomeScreen} options={{
         tabBarIcon: () => (
             <Image style={{width:20, height: 20}} source={require('../assets/Images/home.png')}/>
         )}}/>
-        <Tab.Screen name="Shop" component={Shop} options={{
+        <Tab.Screen name="Cửa hàng" component={Shop} options={{
         tabBarIcon: () => (
             <Image style={{width:25, height: 25}} source={require('../assets/Images/shop.png')}/>
         )}}/>
@@ -24,11 +24,11 @@ function Tabs() {
         tabBarIcon: () => (
             <Image style={{width:25, height: 25}} source={require('../assets/Images/message.png')}/>
         )}}/>
-        <Tab.Screen name="Notice" component={Notice} options={{
+        <Tab.Screen name="Thông báo" component={Notice} options={{
         tabBarIcon: () => (
             <Image style={{width:30, height: 30}} source={require('../assets/Images/bell.png')}/>
         )}}/>
-        <Tab.Screen name="User" component={UserProfile} options={{
+        <Tab.Screen name="Tôi" component={UserProfile} options={{
         tabBarIcon: () => (
             <Image style={{width:25, height: 25}} source={require('../assets/Images/user2.png')}/>
         )}}/>
