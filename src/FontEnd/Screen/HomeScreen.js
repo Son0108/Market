@@ -1,12 +1,56 @@
-import { Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Image, SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import React, { Component } from 'react'
 import { TextInput } from 'react-native-gesture-handler';
 
 export class HomeScreen extends Component {
+
+  sanphams = [ {
+    image : '../assets/Images/voucher.png',
+    name : 'Giày Nike Air Force',
+    price: '2323',
+    isSale: true,
+    sale: '50%'
+  },
+  {
+    image : '../assets/Images/voucher.png',
+    name : 'Giày Nike Air Force',
+    price: '2323',
+    isSale: true,
+    sale: '50%'
+  },
+  {
+    image : '../assets/Images/voucher.png',
+    name : 'Giày Nike Air Force',
+    price: '2323',
+    isSale: false,
+    sale: '0%'
+  },
+  {
+    image : '../assets/Images/voucher.png',
+    name : 'Giày Nike Air Force',
+    price: '2323',
+    isSale: true,
+    sale: '50%'
+  },
+  {
+    image : '../assets/Images/voucher.png',
+    name : 'Giày Nike Air Force',
+    price: '2323',
+    isSale: true,
+    sale: '50%'
+  },
+  {
+    image : '../assets/Images/voucher.png',
+    name : 'Giày Nike Air Force',
+    price: '2323',
+    isSale: false,
+    sale: '50%'
+  }]
+
   render() {
     const {navigation} = this.props;
     return (
-      <ScrollView style={{backgroundColor: '#DDDDDD', height: '100%'}}>
+      <SafeAreaView style={{backgroundColor: '#DDDDDD', height: '100%'}}>
         <View style={{justifyContent:'center', alignItems:'center',width: '100%', backgroundColor: '#FF6699', height: 140}}>
           <Image style={{width:60, height: 60}} source={require('../assets/Images/logo.png')}/>
           <View style={{backgroundColor: '#fff',borderRadius: 5, width:'80%', height: 40, flexDirection:'row', alignItems: 'center', justifyContent: 'space-between'}}>
@@ -30,20 +74,26 @@ export class HomeScreen extends Component {
           </TouchableOpacity>  
         </View>  
     
-        <View style={{flexDirection:'row', width: '100%', height: 150, justifyContent: 'space-between'}}>
-          <View style={{backgroundColor:'#fff', width:'49%', alignItems: 'center'}}>
+        <FlatList
+          data = {this.sanphams}
+          numColumns={2}
+          renderItem={({item}) => <TouchableOpacity style={{
+            backgroundColor: '#fff',
+            flex: 0.5, 
+            height: 200,
+            marginBottom: 10,
+            marginLeft: 10,
+            marginRight: 10
+          }}
+          onPress={() => navigation.navigate('Detailproduct')}
+          >
             <Image style={{width: '100%',height: '75%'}} source={require('../assets/ImageShop/giay.jpg')}></Image>
-            <Text>Giày Nike Air Force</Text>
-            <Text>đ200.000</Text>
-          </View>
-          <View style={{backgroundColor:'#fff', width:'49%', alignItems: 'center'}}>
-            <Image style={{width: '100%',height: '75%'}} source={require('../assets/ImageShop/giay.jpg')}></Image>
-            <Text>Giày Nike Air Force</Text>
-            <Text>đ200.000</Text>
-          </View>
-        </View>
+            <Text>{item.name}</Text>
+            <Text style={{color:'#FF6666',}}>{item.price}  <Text style={{color:'#FF0000', textAlign:'right'}}>-{item.sale}</Text></Text>
+          </TouchableOpacity>}
+        ></FlatList>
         
-      </ScrollView>
+      </SafeAreaView>
     )
   }
 }

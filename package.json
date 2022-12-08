@@ -15,6 +15,7 @@
     "@react-navigation/stack": "^6.3.5",
     "@ungap/url-search-params": "^0.2.2",
     "expo": "~47.0.8",
+    "expo-image-picker": "~14.0.2",
     "expo-splash-screen": "~0.17.5",
     "expo-status-bar": "~1.4.2",
     "react": "18.1.0",
