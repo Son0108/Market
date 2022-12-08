@@ -1,22 +1,11 @@
 import { SafeAreaView, ScrollView, Text, View, Image, TextInput, Button } from 'react-native'
 import React, { Component, useState } from 'react'
-import * as ImagePicker from 'expo-image-picker';
+import UploadImage from '../../utils/UploadImage'
+
 
 export class NewProduct extends Component { 
     render() {
-      const [image, setImage] = useState();
-    const pickImage = async () => {
-        // let result = await ImagePicker.launchImageLibraryAsync({
-        // mediaTypes: ImagePicker.MediaTypeOptions.All,
-        // allowsEditing: true,
-        // aspect: [4, 3],
-        // quality: 1,
-        // });
 
-        // if (!result.canceled) {
-        // setImage(result.assets[0].uri);
-        // }
-    };
     return (
         <SafeAreaView style={{backgroundColor: '#DDDDDD', height: '100%'}}>
             <View style={{justifyContent:'center', alignItems:'center',width: '100%', backgroundColor: '#FF6699', height: 140}}>
@@ -25,8 +14,7 @@ export class NewProduct extends Component {
             </View>
 
             <View style={{alignItems:'center'}}>
-                <Button title="Pick an image from camera roll" onPress={pickImage} />
-                {image && <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+                <UploadImage/>
                 <Text>Nhập tên sản phẩm</Text>
                 <TextInput placeholder='Vui lòng nhâp tên sản phẩm' style={{ height:40,width:'90%',borderWidth:1,borderRadius:6, marginTop: 10}}></TextInput>
                 <Text>Nhập giá tiền của sản phẩm</Text>
