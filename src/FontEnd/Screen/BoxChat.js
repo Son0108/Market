@@ -1,22 +1,28 @@
 import { Text, View, SafeAreaView, Image, FlatList, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
+import Messenger from './Chat/Messenger';
 
 export class BoxChat extends Component {
+
   messages = [{
+    id: 1,
     account: 'admin',
-    message: 'hello cưng',
+    message: 'hello cậu',
   },
   {
+    id: 2,
     account: 'bella',
-    message: 'hello cưng',
+    message: 'hello cậu',
   },
   {
+    id: 3,
     account: 'giám đốc',
-    message: 'hello cưng',
+    message: 'hello bạn',
   },
   {
+    id: 4,
     account: 'giám đốc',
-    message: 'hello cưng',
+    message: 'hello cậu',
   }]
   render() {
     const {navigation} = this.props;
@@ -38,12 +44,15 @@ export class BoxChat extends Component {
             marginRight: 15,
             borderRadius: 10
           }}
+          key={item.id}
           onPress={() => navigation.navigate('Messenger')}
           >
             <Text style={{fontSize: 20,height: 40, fontWeight: '500', marginLeft: 10, borderBottomWidth: 1, borderBottomColor: '#9B9B9B'}}>{item.account}</Text>
             <Text style={{color: '#9B9B9B',marginLeft: 10}}>{item.message} </Text>
           </TouchableOpacity>}
-        ></FlatList>
+        >
+        </FlatList>
+        {/* <Messenger account={}/> */}
       </SafeAreaView>
     )
   }

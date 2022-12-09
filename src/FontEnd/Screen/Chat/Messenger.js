@@ -1,9 +1,18 @@
 import { Text, StyleSheet, View, SafeAreaView, TextInput, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import { AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default class Messenger extends Component {
-  render() {
+    constructor (props) {
+        super(props)
+        this.state = {
+            id:props.id,
+            name:props.account,
+        }
+    }
+    render() {
+      console.log(this.props);
     const {navigation} = this.props;
     return (
         <SafeAreaView style={{backgroundColor: '#DDDDDD', height: '100%'}}>
@@ -13,11 +22,14 @@ export default class Messenger extends Component {
                 </TouchableOpacity>
                 <Text style={{flex: 0.9,fontSize: 40,  fontWeight: '700', marginTop: 20, marginLeft: 120}}>CHAT</Text>
             </View>
-            <View style={{}}>
+            <View style={{flex: 1}}>
                 <Text>hello</Text>
             </View>
-            <View style={{}}>
-                <TextInput style={{backgroundColor:'#FFFF', height: 60, width: '90%', borderRadius: 10, marginLeft: '5%'}}></TextInput>
+            <View style={{flexDirection: 'row', marginLeft: '5%', marginBottom: 20}}>
+                <TextInput style={{backgroundColor:'#FFFF', height: 60, width: '86%', borderRadius: 10}}></TextInput>
+                <TouchableOpacity>
+                    <MaterialCommunityIcons style={{marginTop: 15, marginLeft: 15}} name="send" size={30} color="#DB3022" />
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
