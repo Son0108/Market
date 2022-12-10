@@ -43,8 +43,8 @@ export class UserProfile extends Component {
           </TouchableOpacity>
         </View>
 
-        <TouchableOpacity onPress={() => {navigation.navigate('Home')}} style={{marginTop: 30,backgroundColor: '#DB3022',width: 360, height:48, borderRadius: 25, justifyContent:'center', alignItems: 'center'}}>
-            <Text style={{color: '#FFF', fontSize: 20, fontWeight:'600' }}>LOG OUT</Text>
+        <TouchableOpacity onPress={() => {navigation.navigate('Login')}} style={{marginTop: 30,backgroundColor: '#DB3022',width: 360, height:48, borderRadius: 25, justifyContent:'center', alignItems: 'center'}}>
+            <Text style={{color: '#FFF', fontSize: 20, fontWeight:'600' }}>ĐĂNG XUẤT</Text>
         </TouchableOpacity>
       </SafeAreaView>
     )

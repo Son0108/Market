@@ -1,8 +1,7 @@
-import { View, Text, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import React, { useState } from 'react'
 
-const {width, height} = Dimensions.get('window')
-const DetailProduct = () => {
+const DetailProductSale = () => {
   const [visibleModal, setVisibleModal] = useState(false);
 
   renderModalContent = () => (
@@ -11,14 +10,12 @@ const DetailProduct = () => {
     </View>
   )
   return (
-    <View>
-      <Modal
-        isVisible= {visibleModal}
-        style={styles.modal}
-        >
-        {this.renderModalContent()}
-      </Modal>
-    </View>
+    <Modal
+    isVisible= {visibleModal}
+    style={styles.modal}
+  >
+    {this.renderModalContent()}
+  </Modal>
   )
 }
 
@@ -29,4 +26,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default DetailProduct
+export default DetailProductSale

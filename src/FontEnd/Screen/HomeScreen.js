@@ -1,72 +1,72 @@
-import { FlatList, Image, SafeAreaView, Text, TouchableOpacity, View, TextInput } from 'react-native'
+import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, TextInput, Dimensions, Modal } from 'react-native'
 import React, { Component } from 'react'
-import { SwiperFlatList } from 'react-native-swiper-flatlist';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import ListProduct from './Product/ListProduct';
+import Swiper from 'react-native-swiper'
+
+var {height, width} = Dimensions.get('window');
+const sanphams = [ {
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '0%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+}]
+const banners = [{
+  image: require('../assets/Banner/banner.jpg')
+},{
+  image: require('../assets/Banner/banner2.jpg')
+},{
+  image: require('../assets/Banner/banner3.png')
+},{
+  image: require('../assets/Banner/banner4.jpg')
+},]
 
 export class HomeScreen extends Component {
-
-  sanphams = [ {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: true,
-    sale: '50%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: true,
-    sale: '50%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: false,
-    sale: '0%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: true,
-    sale: '50%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: true,
-    sale: '50%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: false,
-    sale: '50%'
-  }]
-
-  banners = [{
-    image: require('../assets/Banner/banner.jpg')
-  },{
-    image: require('../assets/Banner/banner2.jpg')
-  },{
-    image: require('../assets/Banner/banner3.png')
-  },{
-    image: require('../assets/Banner/banner4.jpg')
-  },]
-
   render() {
     const {navigation} = this.props;
     return (
-      <SafeAreaView style={{backgroundColor: '#DDDDDD', height: '100%'}}>
-        <View style={{height: '9%', marginTop: 40,flexDirection:'row', borderBottomWidth: 1, borderBottomColor: '#9B9B9B'}}>
+      <ScrollView style={{backgroundColor: '#DDDDDD'}}>
+        <View style={{height: height/9, marginTop: 40,flexDirection:'row', borderBottomWidth: 1, borderBottomColor: '#9B9B9B'}}>
           <Text style={{fontSize: 40, marginLeft: 110,  fontWeight: '700', marginTop: 20}}>SHOPPING</Text>
           <TouchableOpacity onPress={() => navigation.navigate('Order')}>
-            <AntDesign style={{marginLeft: 80}} name="shoppingcart" size={24} color="black" />
+            <AntDesign style={{marginLeft: 70, marginTop: 30}} name="shoppingcart" size={24} color="#DB3022" />
           </TouchableOpacity>
         </View>
 
@@ -75,20 +75,15 @@ export class HomeScreen extends Component {
           <FontAwesome style={{marginLeft: -50, marginTop: 15}} name="search" size={30} color="black" />
         </View>
 
-        <SwiperFlatList
-         style={{height: 250}}
-          autoplay
-          autoplayDelay={4}
-          autoplayLoop
-          showPagination
-          data={this.banners}
-          renderItem={({ item }) => (
-            <View>
-              <Image source={item.image}></Image>
-            </View>
-          )}
-        />
-        <View style={{padding:30,flexDirection:'row', width: '100%', height: 80,alignItems:'center', justifyContent: 'space-between'}}>
+        <Swiper style={{height: width/2}}
+        showsButtons={false} autoplay={true} autoplayTimeout={4}
+        >
+          {banners.map((banner) => {
+            return (<Image resizeMode="contain" source={banner.image}/>)
+          })}
+        </Swiper>
+
+        <View style={{padding:30,flexDirection:'row', width: width, height: 80,alignItems:'center', justifyContent: 'space-between'}}>
           <TouchableOpacity style={{alignItems:'center'}}>
             <Image style={{width: 40,height: 40}} source={require('../assets/Images/voucher.png')}></Image>
             <Text>Voucher</Text>
@@ -102,25 +97,14 @@ export class HomeScreen extends Component {
             <Text>Giỏ hàng</Text>
           </TouchableOpacity>  
         </View>  
+
         <FlatList
-          data = {this.sanphams}
+          data={sanphams}
           numColumns={2}
-          renderItem={({item}) => <TouchableOpacity style={{
-            backgroundColor: '#fff',
-            flex: 0.5, 
-            height: 200,
-            marginBottom: 10,
-            marginLeft: 5,
-            marginRight: 5
-          }}
-          onPress={() => navigation.navigate('Detailproduct')}
-          >
-            <Image style={{width: '100%',height: '75%'}} source={require('../assets/ImageShop/giay.jpg')}></Image>
-            <Text>{item.name}</Text>
-            <Text style={{color:'#FF6666',}}>{item.price}  <Text style={{color:'#FF0000', textAlign:'right'}}>-{item.sale}</Text></Text>
-          </TouchableOpacity>}
-        ></FlatList>
-      </SafeAreaView>
+          renderItem={({item}) => <ListProduct item={item}/>}
+          keyExtractor = { (item,index) => index.toString() }
+        />
+      </ScrollView>
     )
   }
 }

@@ -2,71 +2,52 @@ import { Text, View, SafeAreaView, Image, TextInput, FlatList, TouchableOpacity,
 
 import React, { Component } from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
+import ListProductSale from './SaleProduct/ListProductSale';
+const sanphams = [ {
+
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '0%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+},
+{
+  image : require('../assets/ImageShop/giay.jpg'),
+  name : 'Giày Nike Air Force',
+  price: '2323',
+  sale: '50%'
+}]
 
 export class Shop extends Component {
-  sanphams = [ {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: true,
-    sale: '50%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: true,
-    sale: '50%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: false,
-    sale: '0%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: true,
-    sale: '50%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: true,
-    sale: '50%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: false,
-    sale: '50%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: false,
-    sale: '50%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: false,
-    sale: '50%'
-  },
-  {
-    image : '../assets/Images/voucher.png',
-    name : 'Giày Nike Air Force',
-    price: '2323',
-    isSale: false,
-    sale: '50%'
-  }]
   render() {
     const {navigation} = this.props;
     return (
@@ -77,22 +58,9 @@ export class Shop extends Component {
 
         <View style={{height: '80%'}}>
           <FlatList
-            data = {this.sanphams}
+            data = {sanphams}
             numColumns={2}
-            renderItem={({item}) => <TouchableOpacity style={{
-              backgroundColor: '#fff',
-              flex: 0.5, 
-              height: 200,
-              marginBottom: 10,
-              marginLeft: 5,
-              marginRight: 5
-            }}
-            onPress={() => {navigation.navigate('Modifyproduct')}}
-            >
-              <Image style={{width: '100%',height: '75%'}} source={require('../assets/ImageShop/giay.jpg')}></Image>
-              <Text>{item.name}</Text>
-              <Text style={{color:'#FF6666',}}>{item.price}  <Text style={{color:'#FF0000', textAlign:'right'}}>-{item.sale}</Text></Text>
-            </TouchableOpacity>}
+            renderItem={({item}) => <ListProductSale item={item}/>}
           ></FlatList>
         </View>
       <Button onPress={() => {navigation.navigate('Newproduct')}} title='Thêm sản phẩm'></Button>

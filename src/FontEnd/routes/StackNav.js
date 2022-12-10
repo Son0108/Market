@@ -10,13 +10,17 @@ import SignupSuccess from '../Auth/SignupSuccess';
 import Order from '../Screen/Cart/Order';
 import DetailOrder from '../Screen/Cart/DetailOrder';
 import Messenger from '../Screen/Chat/Messenger';
+import DetailProductOrder from '../Screen/OrderProduct/DetailProductOrder';
+import DetailProductSale from '../Screen/SaleProduct/DetailProductSale';
+import Home from '../Auth/Home';
 
 const Stack = createStackNavigator();
 
 function StackNav() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={Login} />
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="App" component={Tabs}/>
       <Stack.Screen name="Signup" component={SignUp} />
       <Stack.Screen name="SignupSuccess" component={SignupSuccess}/>
@@ -26,6 +30,9 @@ function StackNav() {
       <Stack.Screen name="Detailproduct" component={DetailProduct}/>
       <Stack.Screen name="Modifyproduct" component={ModifyProduct}/>
       <Stack.Screen name="Messenger" component={Messenger}/>
+      <Stack.Screen name="DetailProduct" component={DetailProduct}/>
+      <Stack.Screen name="DetailProductOrder" component={DetailProductOrder}/>
+      <Stack.Screen name="DetailProductSale" component={DetailProductSale}/>
     </Stack.Navigator>
   );
 }
