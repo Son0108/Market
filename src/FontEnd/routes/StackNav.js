@@ -2,7 +2,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Tabs from "../Screen/Tabs";
 import NewProduct from "../Screen/Product/NewProduct";
-import DetailProduct from "../Screen/Product/DetailProduct";
 import ModifyProduct from "../Screen/Product/ModifyProduct";
 import Login from "../Auth/Login";
 import SignUp from "../Auth/SignUp";
@@ -27,10 +26,8 @@ function StackNav() {
       <Stack.Screen name="Order" component={Order}/>
       <Stack.Screen name="OrderDetail" component={DetailOrder}/>
       <Stack.Screen name="Newproduct" component={NewProduct}/>
-      <Stack.Screen name="Detailproduct" component={DetailProduct}/>
       <Stack.Screen name="Modifyproduct" component={ModifyProduct}/>
       <Stack.Screen name="Messenger" component={Messenger}/>
-      <Stack.Screen name="DetailProduct" component={DetailProduct}/>
       <Stack.Screen name="DetailProductOrder" component={DetailProductOrder}/>
       <Stack.Screen name="DetailProductSale" component={DetailProductSale}/>
     </Stack.Navigator>
