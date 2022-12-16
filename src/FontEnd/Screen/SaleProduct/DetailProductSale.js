@@ -1,29 +1,38 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
+import { SafeAreaView, ScrollView, Text, View, TouchableOpacity, TextInput, Button, StyleSheet } from 'react-native'
+import React, { Component, useState } from 'react'
+import UploadImage from '../../utils/UploadImage'
 
-const DetailProductSale = () => {
-  const [visibleModal, setVisibleModal] = useState(false);
-
-  renderModalContent = () => (
-    <View style={styles.modalContent}>
-      <Text>Hello!</Text>
-    </View>
-  )
+const DetailProductSale = ({navigation,route}) => {
   return (
-    <Modal
-    isVisible= {visibleModal}
-    style={styles.modal}
-  >
-    {this.renderModalContent()}
-  </Modal>
+      <SafeAreaView style={{backgroundColor: '#DDDDDD', height: '100%'}}>
+          <View style={{height: '10%', marginTop: 40, borderBottomWidth: 1, borderBottomColor: '#9B9B9B', justifyContent:'center',alignItems:'center'}}>
+              <Text style={{fontSize: 40,  fontWeight: '700', marginTop: 20}}>THÊM SẢN PHẨM</Text>
+          </View>
+
+          <View style={{alignItems:'center', marginTop: 20}}>
+              <UploadImage/>
+              <Text style={styles.text}>Nhập tên sản phẩm</Text>
+              <TextInput defaultValue={route.params.name} style={{ height:40,width:'90%',borderWidth:1,borderRadius:6, marginTop: 10,backgroundColor: '#FFFF'}}></TextInput>
+              <Text style={styles.text}>Nhập giá tiền của sản phẩm</Text>
+              <TextInput defaultValue={route.params.price} style={{  height:40,width:'90%',borderWidth:1, borderRadius:6, marginTop: 10,backgroundColor: '#FFFF'}}></TextInput>
+              <Text style={styles.text}>Mô tả sản phẩm</Text>
+              <TextInput placeholder='Nhập mô tả' style={{ height:60, width:'90%',borderWidth:1, borderRadius:6, marginTop: 10, marginBottom: 20,backgroundColor: '#FFFF'}}></TextInput>
+          </View>
+          <TouchableOpacity  style={{ marginLeft: 25,backgroundColor: '#DB3022',width: 360, height:48, borderRadius: 25, justifyContent:'center', alignItems: 'center'}}>
+              <Text style={{color: '#FFF', fontSize: 20, fontWeight:'600' }}>LƯU THAY ĐỔI</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.goBack()} style={{marginTop: 20, marginLeft: 25,backgroundColor: '#FFFF',width: 360, height:48, borderRadius: 25, justifyContent:'center', alignItems: 'center', borderWidth: 1, borderColor:'#DB3022'}}>
+              <Text style={{color: '#DB3022', fontSize: 20, fontWeight:'600' }}>HỦY BỎ</Text>
+          </TouchableOpacity>
+      </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
-  modal: {
-    justifyContent: 'flex-end',
-    margin: 0,
-  },
+  text: {
+      marginTop: 10,
+      fontWeight: 'bold'
+  }
 })
 
 export default DetailProductSale

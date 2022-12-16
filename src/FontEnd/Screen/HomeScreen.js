@@ -67,8 +67,7 @@ const banners = [{
 },]
 
 const HomeScreen = () => {
-  const {navigation} = useNavigation();
-  const [handleView, setHandleView] = useState(false);
+  const navigation = useNavigation();
   return (
     <ScrollView style={{backgroundColor: '#DDDDDD'}}>
       <View style={{height: height/9, marginTop: 40,flexDirection:'row', borderBottomWidth: 1, borderBottomColor: '#9B9B9B'}}>
@@ -80,7 +79,9 @@ const HomeScreen = () => {
 
       <View style={{marginTop: 20, marginBottom: 20, flexDirection: 'row'}}>
         <TextInput style={{backgroundColor:'#FFFF', height: 60, width: '90%', borderRadius: 10, marginLeft: '5%'}} placeholder='Nhập sản phẩm cần tìm'></TextInput>
-        <FontAwesome style={{marginLeft: -50, marginTop: 15}} name="search" size={30} color="black" />
+        <TouchableOpacity>
+          <FontAwesome style={{marginLeft: -50, marginTop: 15}} name="search" size={30} color="black" />
+        </TouchableOpacity>
       </View>
 
       <Swiper style={{height: width/2}}
@@ -109,7 +110,7 @@ const HomeScreen = () => {
       <FlatList
         data={sanphams}
         numColumns={2}
-        renderItem={({item, index}) => <ListProduct handle={handleView} setHandle={setHandleView}  key={index} item={item}/>}
+        renderItem={({item, index}) => <ListProduct key={index} item={item}/>}
       />
     </ScrollView>
   )

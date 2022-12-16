@@ -15,11 +15,11 @@ export class NewProduct extends Component {
             <View style={{alignItems:'center', marginTop: 20}}>
                 <UploadImage/>
                 <Text style={styles.text}>Nhập tên sản phẩm</Text>
-                <TextInput placeholder='Vui lòng nhâp tên sản phẩm' style={{ height:40,width:'90%',borderWidth:1,borderRadius:6, marginTop: 10}}></TextInput>
+                <TextInput placeholder='Vui lòng nhâp tên sản phẩm' style={{ height:40,width:'90%',borderWidth:1,borderRadius:6, marginTop: 10, backgroundColor: '#FFFF'}}></TextInput>
                 <Text style={styles.text}>Nhập giá tiền của sản phẩm</Text>
-                <TextInput placeholder='Nhập giá tiền' style={{  height:40,width:'90%',borderWidth:1, borderRadius:6, marginTop: 10}}></TextInput>
+                <TextInput placeholder='Nhập giá tiền' style={{  height:40,width:'90%',borderWidth:1, borderRadius:6, marginTop: 10,backgroundColor: '#FFFF'}}></TextInput>
                 <Text style={styles.text}>Mô tả sản phẩm</Text>
-                <TextInput placeholder='Nhập mô tả' style={{ height:60, width:'90%',borderWidth:1, borderRadius:6, marginTop: 10, marginBottom: 20}}></TextInput>
+                <TextInput placeholder='Nhập mô tả' style={{ height:60, width:'90%',borderWidth:1, borderRadius:6, marginTop: 10, marginBottom: 20,backgroundColor: '#FFFF'}}></TextInput>
             </View>
             <TouchableOpacity  style={{ marginLeft: 25,backgroundColor: '#DB3022',width: 360, height:48, borderRadius: 25, justifyContent:'center', alignItems: 'center'}}>
                 <Text style={{color: '#FFF', fontSize: 20, fontWeight:'600' }}>THÊM SẢN PHẨM</Text>

@@ -20,7 +20,7 @@ function UploadImage() {
   if (!handleUpload) {
     return (
         <TouchableOpacity onPress={pickImage}>
-              <Text style={{width:200, height: 200, borderWidth: 1, paddingTop: 90, paddingLeft: 70}}> Chọn ảnh</Text>
+              <Text style={{width:200, height: 200, borderWidth: 1, paddingTop: 90, paddingLeft: 70,backgroundColor: '#FFFF'}}> Chọn ảnh</Text>
         </TouchableOpacity>
     )
   } else {

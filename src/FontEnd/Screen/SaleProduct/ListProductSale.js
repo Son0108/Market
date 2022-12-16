@@ -7,7 +7,7 @@ const ListProductSale = ({item}) => {
   return (
     <TouchableOpacity
         style={styles.divProductSale}
-        onPress={() => navigation.navigate('DetailProductSale')}
+        onPress={() => navigation.navigate('DetailProductSale',item)}
     >
         <Image
         style={styles.imageProductSale}
