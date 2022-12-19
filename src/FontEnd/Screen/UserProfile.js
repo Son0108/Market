@@ -34,7 +34,7 @@ export class UserProfile extends Component {
             </View>
             <AntDesign name="right" size={20} color="#9B9B9B" />
           </TouchableOpacity>
-          <TouchableOpacity style={{flexDirection: 'row', height:50, marginTop: 30}}>
+          <TouchableOpacity onPress={() => navigation.navigate('SettingProfile')} style={{flexDirection: 'row', height:50, marginTop: 30}}>
             <View style={{width:'90%'}}>
               <Text style={{fontSize: 20, fontWeight: '500'}}>Cài đặt</Text>
               <Text style={{color: '#9B9B9B'}}>Mật khẩu, thông báo</Text>

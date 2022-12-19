@@ -72,9 +72,6 @@ const HomeScreen = () => {
     <ScrollView style={{backgroundColor: '#DDDDDD'}}>
       <View style={{height: height/9, marginTop: 40,flexDirection:'row', borderBottomWidth: 1, borderBottomColor: '#9B9B9B'}}>
         <Text style={{fontSize: 40, marginLeft: 110,  fontWeight: '700', marginTop: 20}}>SHOPPING</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Order')}>
-          <AntDesign style={{marginLeft: 70, marginTop: 30}} name="shoppingcart" size={24} color="#DB3022" />
-        </TouchableOpacity>
       </View>
 
       <View style={{marginTop: 20, marginBottom: 20, flexDirection: 'row'}}>

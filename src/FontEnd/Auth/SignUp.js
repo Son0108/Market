@@ -1,33 +1,79 @@
-import { Text, StyleSheet, View, SafeAreaView, TextInput, TouchableOpacity } from 'react-native'
-import React, { Component } from 'react'
+import { Text, StyleSheet, View, TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import React, { useState } from 'react'
 import UploadAvatar from '../utils/UploadAvatar'
 import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
-export default class SignUp extends Component {
-  render() {
-    const {navigation} = this.props;
-    return (
-        <SafeAreaView style={{flex: 1, backgroundColor: '#F9F9F9'}}>
-            <View  style={{height: '10%',marginTop: 106, marginLeft: 14, flexDirection: 'row'}}>
-                <TouchableOpacity onPress={() => navigation.goBack()}>
-                    <AntDesign style={{marginTop: 25}} name="left" size={24} color="black" />
-                </TouchableOpacity>
-                <Text style={{marginLeft: 10,fontSize: 60, fontWeight: 'bold'}}>Đăng ký</Text>
-            </View>
-            <View style={{ height:'60%',justifyContent: 'center', alignItems: 'center'}}>
-                <UploadAvatar/>
-                <TextInput placeholder='Email' style={{backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
-                <TextInput placeholder='Full name' style={{backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
-                <TextInput placeholder='Password' style={{backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
-                <TextInput placeholder='Phone' style={{backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
-                <TextInput placeholder='Address' style={{backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
-            </View>
-            <TouchableOpacity onPress={() => {navigation.navigate('SignupSuccess')}} style={{ marginLeft: 25,backgroundColor: '#DB3022',width: 360, height:48, borderRadius: 25, justifyContent:'center', alignItems: 'center'}}>
-                <Text style={{color: '#FFF', fontSize: 20, fontWeight:'600' }}>ĐĂNG KÝ</Text>
-            </TouchableOpacity>
-      </SafeAreaView>
-    )
+const SignUp = () => {
+  const [alert, setAlert] = useState(false);
+  const [image, setImage] = useState(null);
+  let formdata = new FormData();
+  const [signUp, setSignUp] = useState({
+    address:"",
+    avatar:"",
+    dateOfBirth:"",
+    email:"",
+    fullname:"",
+    password:"",
+    phone:""
+  })
+  const navigation = useNavigation();
+
+  let signUpPost = () => {
+    const filename=image.substring(image.lastIndexOf('/')+1);
+    formdata.append("address",signUp.address);
+    formdata.append("avatar", {uri: image.uri, name: filename, type: 'image/jpeg'});
+    formdata.append("dateOfBirth",signUp.dateOfBirth);
+    formdata.append("email",signUp.email);
+    formdata.append("fullname",signUp.fullname);
+    formdata.append("password",signUp.password);
+    formdata.append("phone",signUp.phone);
+    formdata.append("status","1");
+    formdata.append("type","1");
+    console.log(filename)
+    fetch('http://172.16.103.13:3000/v1/auth/register',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      body: formdata
+      }).then(response => {
+        console.log(response.status)
+        if(response.status == 200) {
+          navigation.navigate('SignupSuccess');
+          setAlert(false);
+        } else if (response.status == 500) {
+          setAlert(true);
+        }
+      }).catch(err => {
+        console.log(err)
+      }) 
   }
+  return (
+    <ScrollView style={{ backgroundColor: '#F9F9F9'}}>
+    <View  style={{marginTop: 70, marginLeft: 14, flexDirection: 'row'}}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+            <AntDesign style={{marginTop: 25}} name="left" size={24} color="black" />
+        </TouchableOpacity>
+        <Text style={{marginLeft: 10,fontSize: 60, fontWeight: 'bold'}}>Đăng ký</Text>
+    </View>
+    <View style={{marginTop: 30,justifyContent: 'center', alignItems: 'center'}}>
+      <UploadAvatar image={image} setImage={setImage}/>
+      <TextInput onChangeText={address => {signUp.address = address}} placeholder='Address' style={{paddingLeft: 10,backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
+      <TextInput onChangeText={dateOfBirth => {signUp.dateOfBirth = dateOfBirth}} placeholder='Date Of Birth yy-mm-dd' style={{paddingLeft: 10,backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
+      <TextInput onChangeText={email => {signUp.email = email}} placeholder='Email' style={{paddingLeft: 10,backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
+      <TextInput onChangeText={fullName => {signUp.fullname = fullName}} placeholder='Full Name' style={{paddingLeft: 10,backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
+      <TextInput onChangeText={pass => {signUp.password = pass}} placeholder='Password' style={{paddingLeft: 10,backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
+      <TextInput onChangeText={phone => {signUp.phone = phone}} placeholder='Phone' style={{paddingLeft: 10,backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
+      {alert && <Text style={{color:'red',marginTop: 5}}>Email đã tồn tại hoặc không đúng</Text>}
+      <TouchableOpacity onPress={() => signUpPost()} style={{paddingLeft: 10,backgroundColor: '#DB3022',width: 360, height:48, borderRadius: 25, justifyContent:'center', alignItems: 'center',  marginTop: 30}}>
+          <Text style={{color: '#FFF', fontSize: 20, fontWeight:'600' }}>ĐĂNG KÝ</Text>
+      </TouchableOpacity>
+    </View>
+  </ScrollView>
+  )
 }
+
+export default SignUp
 
 const styles = StyleSheet.create({})

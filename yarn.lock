@@ -5240,6 +5240,11 @@
     "os-homedir" "^1.0.0"
     "os-tmpdir" "^1.0.0"
 
+"p-defer@^3.0.0":
+  "integrity" "sha512-ugZxsxmtTln604yeYd29EGrNhazN2lywetzpKhfmQjW/VJmhpDmWbiX+h0zL8V91R0UXkhb3KtPmyq9PZw3aYw=="
+  "resolved" "https://registry.npmjs.org/p-defer/-/p-defer-3.0.0.tgz"
+  "version" "3.0.0"
+
 "p-finally@^1.0.0":
   "integrity" "sha512-LICb2p9CB7FS+0eR1oqWnHhp0FljGLZCWBE9aix0Uye9W8LTQPwMTYVGWQWIw9RdQiDg4+epXQODwIYJtSJaow=="
   "resolved" "https://registry.npmjs.org/p-finally/-/p-finally-1.0.0.tgz"
@@ -5615,6 +5620,13 @@
     "jscodeshift" "^0.13.1"
     "nullthrows" "^1.1.1"
 
+"react-native-fetch-api@^3.0.0":
+  "integrity" "sha512-g2rtqPjdroaboDKTsJCTlcmtw54E25OjyaunUP0anOZn4Fuo2IKs8BVfe02zVggA/UysbmfSnRJIqtNkAgggNA=="
+  "resolved" "https://registry.npmjs.org/react-native-fetch-api/-/react-native-fetch-api-3.0.0.tgz"
+  "version" "3.0.0"
+  dependencies:
+    "p-defer" "^3.0.0"
+
 "react-native-gesture-handler@>= 1.0.0", "react-native-gesture-handler@~2.8.0":
   "integrity" "sha512-poOSfz/w0IyD6Qwq7aaIRRfEaVTl1ecQFoyiIbpOpfNTjm2B1niY2FLrdVQIOtIOe+K9nH55Qal04nr4jGkHdQ=="
   "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.8.0.tgz"
@@ -5630,6 +5642,11 @@
   "integrity" "sha512-oOanj84fJEXUg9FoEAQomA8ISG+DVIrTZ3qF7m69VQUJyOGYyDZmPqKcjvRku4KXlEH6hWO9i4ACLzNBh8gC0A=="
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.70.3.tgz"
   "version" "0.70.3"
+
+"react-native-image-picker@^4.10.2":
+  "integrity" "sha512-3h9PrA1dQ84rVeipzQE4eWTELvflSHNtJZN6rz7NkZyaxo9YZV8H/TswBpHwiS5YWlyu+zlLzSoWVa1opSu7GA=="
+  "resolved" "https://registry.npmjs.org/react-native-image-picker/-/react-native-image-picker-4.10.2.tgz"
+  "version" "4.10.2"
 
 "react-native-modal@^13.0.1":
   "integrity" "sha512-UB+mjmUtf+miaG/sDhOikRfBOv0gJdBU2ZE1HtFWp6UixW9jCk/bhGdHUgmZljbPpp0RaO/6YiMmQSSK3kkMaw=="

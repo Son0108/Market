@@ -12,6 +12,7 @@ import Messenger from '../Screen/Chat/Messenger';
 import DetailProductOrder from '../Screen/OrderProduct/DetailProductOrder';
 import DetailProductSale from '../Screen/SaleProduct/DetailProductSale';
 import Home from '../Auth/Home';
+import SettingProfile from '../Screen/Profile/SettingProfile';
 
 const Stack = createStackNavigator();
 
@@ -30,6 +31,7 @@ function StackNav() {
       <Stack.Screen name="Messenger" component={Messenger}/>
       <Stack.Screen name="DetailProductOrder" component={DetailProductOrder}/>
       <Stack.Screen name="DetailProductSale" component={DetailProductSale}/>
+      <Stack.Screen name="SettingProfile" component={SettingProfile}/>
     </Stack.Navigator>
   );
 }

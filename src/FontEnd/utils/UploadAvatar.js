@@ -2,8 +2,7 @@ import React, {useState} from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import { Text, TouchableOpacity, Image } from 'react-native';
 
-function UploadAvatar() {
-    const [image, setImage] = useState(null);
+function UploadAvatar({image, setImage}) {
     const [handleUpload, setHandleUpload] = useState(false);
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -14,7 +13,7 @@ function UploadAvatar() {
         });
         setHandleUpload(true)
         if (!result.canceled) {
-        setImage(result.assets[0].uri);
+            setImage(result.assets[0].uri);
         }
     };
     if (!handleUpload) {
