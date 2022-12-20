@@ -8,11 +8,12 @@ function UploadAvatar({ setImageForm}) {
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
             allowsEditing: true,
+            aspect: [4, 3],
             quality: 1,
           });
-        setImageForm(result.assets[0])
-        setHandleUpload(true)
-        if (!result.canceled) {
+          setHandleUpload(true)
+          if (!result.canceled) {
+            setImageForm(result.assets[0])
             setImage(result.assets[0].uri);
         } else {
             setHandleUpload(false);

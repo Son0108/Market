@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { API_URL } from '../utils/localhost';
 
 const {width, height} = Dimensions.get('window')
 const Login = () => {
@@ -16,17 +17,17 @@ const Login = () => {
       email:emailLogin,
       password:passwordLogin
     }
-    fetch("http://192.168.31.25:3000/v1/auth/login", {
+    fetch(`${API_URL}/auth/login`, {
       method:'POST',
       headers: {'Content-Type': 'application/json'},
       body:JSON.stringify(data)
     })
     .then(response => {
-      response.json().then(async json => {
-        await AsyncStorage.setItem('@token',JSON.stringify(json.payload.token))
-        await AsyncStorage.setItem('@user',JSON.stringify(json.payload.user))
-      });
       if(response.status == 200) {
+        response.json().then(async json => {
+          await AsyncStorage.setItem('@token',JSON.stringify(json.payload.token))
+          await AsyncStorage.setItem('@user',JSON.stringify(json.payload.user))
+        });
         navigation.navigate('App')
         setAlert(false);
       } else if (response.status == 500) {

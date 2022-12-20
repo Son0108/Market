@@ -1,6 +1,6 @@
 import { FlatList, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, TextInput, Dimensions } from 'react-native'
 import React, { Component, useEffect, useState } from 'react'
-import { AntDesign } from '@expo/vector-icons';
+import { API_URL } from '../utils/localhost';
 import { FontAwesome } from '@expo/vector-icons';
 import ListProduct from './Product/ListProduct';
 import Swiper from 'react-native-swiper'
@@ -71,7 +71,7 @@ const HomeScreen = ({navigation}) => {
   useEffect(() => {
     const fetchData = async () => {
       AsyncStorage.getItem('@token').then(async tokens => {
-        const response = await fetch('http://192.168.31.25:3000/v1/category/get-all',{
+        const response = await fetch(`${API_URL}/category/get-all`,{
           method: 'GET',
           headers: {
             authorization:"Bearer "+tokens.replace(/"/g,'')

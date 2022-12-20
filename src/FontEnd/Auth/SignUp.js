@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import UploadAvatar from '../utils/UploadAvatar'
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import axios from 'axios';
+import { API_URL } from '../utils/localhost';
 
 const SignUp = () => {
   const [alert, setAlert] = useState(false);
@@ -42,7 +42,7 @@ const SignUp = () => {
     formdata.append("phone",signUp.phone);
     formdata.append("status","1");
     formdata.append("type","1");
-    fetch("http://192.168.31.25:3000/v1/auth/register", {
+    fetch(`${API_URL}/v1/auth/register`, {
       method:'POST',
       body:formdata,
       headers: {

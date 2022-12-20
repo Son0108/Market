@@ -2,20 +2,22 @@ import React, {useState} from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import { View, Text, Button, TouchableOpacity, Image } from 'react-native';
 
-function UploadImage() {
+function UploadImage({setImageForm}) {
     const [image, setImage] = useState(null);
     const [handleUpload, setHandleUpload] = useState(false);
     const pickImage = async () => {
       let result = await ImagePicker.launchImageLibraryAsync({
         allowsEditing: true,
+        aspect: [4, 3],
         quality: 1,
       });
-        setHandleUpload(true)
-        if (!result.canceled) {
-          setImage(result.assets[0].uri);
-        } else {
-          setHandleUpload(false)
-        }
+      setHandleUpload(true)
+      if (!result.canceled) {
+        setImageForm(result.assets[0])
+        setImage(result.assets[0].uri);
+      } else {
+        setHandleUpload(false)
+      }
     };
   if (!handleUpload) {
     return (
