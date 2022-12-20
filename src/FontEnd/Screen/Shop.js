@@ -36,7 +36,7 @@ const Shop = ({navigation}) => {
         <FlatList
           data = {items.payload}
           numColumns={2}
-          renderItem={({item}) => <ListProductSale item={item}/>}
+          renderItem={({item}) => <ListProductSale key={item.id} id={item.id} item={item} addNew={addNew} setAddNew={setAddNew}/>}
         ></FlatList>
       </View>
     <Button onPress={() => {navigation.navigate('Newproduct', {addNew: addNew, setAddNew:setAddNew})}} title='Thêm sản phẩm'></Button>

@@ -116,7 +116,7 @@ const HomeScreen = ({navigation}) => {
         <FlatList
           data={sanphams}
           numColumns={2}
-          renderItem={({item, index}) => <ListProduct key={index} item={item}/>}
+          renderItem={({item, index}) => <ListProduct key={item.id} item={item}/>}
         />
       </View>
     </ScrollView>

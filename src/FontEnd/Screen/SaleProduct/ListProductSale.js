@@ -3,17 +3,17 @@ import React from 'react'
 import { API_URL } from '../../utils/localhost';
 import { useNavigation } from '@react-navigation/native';
 var {height, width} = Dimensions.get('window');
-const ListProductSale = ({item}) => {
+const ListProductSale = ({id, item, addNew, setAddNew}) => {
     const navigation = useNavigation();
     const url_image = item.images[0].url.substr(24,item.images[0].url.length - 24)
-
-    let editItem = () => {
-
-    }
+    
   return (
     <TouchableOpacity
         style={styles.divProductSale}
-        onPress={(e) => console.log(e.target.id)}
+        onPress={() => navigation.navigate('DetailProductSale', {
+          id:id,
+          addNew:addNew,
+          setAddNew:setAddNew})}
     >
         <Image
         style={styles.imageProductSale}
@@ -23,7 +23,7 @@ const ListProductSale = ({item}) => {
         <Text style={{fontWeight:'bold',fontSize:18,textAlign:'center'}}>
             {item.name}
         </Text>
-        <Text style={{fontSize:14,color:"green"}}>{item.price}đ <Text style={{fontSize:14,color:"red"}}>-{item.sale}</Text></Text>
+        <Text style={{marginLeft: 10,fontSize:14,color:"green"}}>{item.price}đ  <Text style={{fontSize:12,color:"red"}}>số lượng:{item.quantity}</Text></Text>
     </TouchableOpacity>
   )
 }

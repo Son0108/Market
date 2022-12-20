@@ -9,10 +9,9 @@ const NewProduct = ({navigation,route}) => {
     const {height,width} = Dimensions.get('window');
     const [imageForm, setImageForm] = useState(null);
     const [categories, setCategories] = useState("");
+    const [categorieIds, setCategorieIds] = useState([]);
     let formdata = new FormData();
     const [item, setItem] = useState({
-        categoryIds:"",
-        description:"",
         name:"",
         price:"",
         quantity:""
@@ -32,7 +31,6 @@ const NewProduct = ({navigation,route}) => {
         }
         fetchData();
     },[])
-    
     let createItem = () => {
         const uri =
         Platform.OS === "android"
@@ -43,7 +41,7 @@ const NewProduct = ({navigation,route}) => {
         const ext = match?.[1];
         const type = match ? `image/${match[1]}` : `image`;
         console.log(uri + " " + type + " " + `image.${ext}`)
-        formdata.append("categoryIds",item.categoryIds);
+        formdata.append("categoryIds",JSON.stringify(categorieIds));
         formdata.append("description",item.description);
         formdata.append("images", { uri,
         name: `image.${ext}`,
@@ -54,6 +52,7 @@ const NewProduct = ({navigation,route}) => {
         formdata.append("quantity",item.quantity);
         formdata.append("status","1");
         formdata.append("type","1");
+        console.log(formdata)
         AsyncStorage.getItem('@token').then(async tokens => {
             fetch(`${API_URL}/item/create`, {
                 method:'POST',
@@ -96,7 +95,7 @@ const NewProduct = ({navigation,route}) => {
                         defaultButtonText="Chọn thể loại sản phẩm"
                         data={categories.payload}
                         onSelect={(selectedItem, index) => {
-                            item.categoryIds = selectedItem.id
+                            setCategorieIds([selectedItem.id])
                         }}
                         buttonTextAfterSelection={(selectedItem, index) => {
                             return selectedItem.name

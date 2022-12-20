@@ -18,7 +18,7 @@ const ListProduct = ({item}) => {
             <Text style={{fontWeight:'bold',fontSize:18,textAlign:'center'}}>
                 {item.name}
             </Text>
-            <Text style={{fontSize:14,color:"green"}}>{item.price}đ <Text style={{fontSize:14,color:"red"}}>-{item.sale}</Text></Text>
+            <Text style={{fontSize:14,color:"green"}}>{item.price}đ</Text>
         </TouchableOpacity>
         
     </View>
