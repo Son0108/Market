@@ -1,8 +1,8 @@
-import { Text, StyleSheet, View, SafeAreaView, TouchableOpacity, TextInput, Dimensions, ScrollView } from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, TextInput, Dimensions, ScrollView } from 'react-native'
 import React, { useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { enviroment } from '../Enviroment/Enviroment';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {width, height} = Dimensions.get('window')
 const Login = () => {
@@ -16,12 +16,16 @@ const Login = () => {
       email:emailLogin,
       password:passwordLogin
     }
-    fetch("http://172.16.103.13:3000/v1/auth/login", {
+    fetch("http://192.168.31.25:3000/v1/auth/login", {
       method:'POST',
       headers: {'Content-Type': 'application/json'},
       body:JSON.stringify(data)
     })
     .then(response => {
+      response.json().then(async json => {
+        await AsyncStorage.setItem('@token',JSON.stringify(json.payload.token))
+        await AsyncStorage.setItem('@user',JSON.stringify(json.payload.user))
+      });
       if(response.status == 200) {
         navigation.navigate('App')
         setAlert(false);

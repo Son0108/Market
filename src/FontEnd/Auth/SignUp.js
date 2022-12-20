@@ -3,10 +3,11 @@ import React, { useState } from 'react'
 import UploadAvatar from '../utils/UploadAvatar'
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
 const SignUp = () => {
   const [alert, setAlert] = useState(false);
-  const [image, setImage] = useState(null);
+  const [imageForm, setImageForm] = useState(null);
   let formdata = new FormData();
   const [signUp, setSignUp] = useState({
     address:"",
@@ -20,9 +21,20 @@ const SignUp = () => {
   const navigation = useNavigation();
 
   let signUpPost = () => {
-    const filename=image.substring(image.lastIndexOf('/')+1);
+    const uri =
+    Platform.OS === "android"
+      ? imageForm.uri
+      : imageForm.uri.replace("file://", "");
+    const filename = imageForm.uri.split("/").pop();
+    const match = /\.(\w+)$/.exec(filename);
+    const ext = match?.[1];
+    const type = match ? `image/${match[1]}` : `image`;
+    console.log(uri + " " + type + " " + `image.${ext}`)
     formdata.append("address",signUp.address);
-    formdata.append("avatar", {uri: image.uri, name: filename, type: 'image/jpeg'});
+    formdata.append("avatar", { uri,
+      name: `image.${ext}`,
+      type,
+    });
     formdata.append("dateOfBirth",signUp.dateOfBirth);
     formdata.append("email",signUp.email);
     formdata.append("fullname",signUp.fullname);
@@ -30,14 +42,14 @@ const SignUp = () => {
     formdata.append("phone",signUp.phone);
     formdata.append("status","1");
     formdata.append("type","1");
-    console.log(filename)
-    fetch('http://172.16.103.13:3000/v1/auth/register',{
-      method: 'POST',
+    fetch("http://192.168.31.25:3000/v1/auth/register", {
+      method:'POST',
+      body:formdata,
       headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      body: formdata
-      }).then(response => {
+        "Content-Type": "multipart/form-data",
+        Accept: "application/json",
+      }})
+    .then(response => {
         console.log(response.status)
         if(response.status == 200) {
           navigation.navigate('SignupSuccess');
@@ -58,7 +70,7 @@ const SignUp = () => {
         <Text style={{marginLeft: 10,fontSize: 60, fontWeight: 'bold'}}>Đăng ký</Text>
     </View>
     <View style={{marginTop: 30,justifyContent: 'center', alignItems: 'center'}}>
-      <UploadAvatar image={image} setImage={setImage}/>
+      <UploadAvatar setImageForm={setImageForm}/>
       <TextInput onChangeText={address => {signUp.address = address}} placeholder='Address' style={{paddingLeft: 10,backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
       <TextInput onChangeText={dateOfBirth => {signUp.dateOfBirth = dateOfBirth}} placeholder='Date Of Birth yy-mm-dd' style={{paddingLeft: 10,backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>
       <TextInput onChangeText={email => {signUp.email = email}} placeholder='Email' style={{paddingLeft: 10,backgroundColor: '#FFFF',width: 360, height: 64,shadowColor:"#000",shadowOffset: {width:1,height: 0}, elevation: 8,borderRadius: 4, marginTop: 10}}></TextInput>

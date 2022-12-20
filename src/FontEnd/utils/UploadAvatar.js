@@ -2,18 +2,20 @@ import React, {useState} from 'react'
 import * as ImagePicker from 'expo-image-picker';
 import { Text, TouchableOpacity, Image } from 'react-native';
 
-function UploadAvatar({image, setImage}) {
+function UploadAvatar({ setImageForm}) {
+    const [image, setImage] = useState(null);
     const [handleUpload, setHandleUpload] = useState(false);
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
-        allowsEditing: true,
-        aspect: [4, 3],
-        quality: 1,
-        });
+            allowsEditing: true,
+            quality: 1,
+          });
+        setImageForm(result.assets[0])
         setHandleUpload(true)
         if (!result.canceled) {
             setImage(result.assets[0].uri);
+        } else {
+            setHandleUpload(false);
         }
     };
     if (!handleUpload) {

@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {useNavigation} from '@react-navigation/native';
 
 const Messenger = ({route}) => {
+    console.log(route)
     const navigation = useNavigation();
   return (
     <SafeAreaView style={{backgroundColor: '#DDDDDD', height: '100%'}}>
