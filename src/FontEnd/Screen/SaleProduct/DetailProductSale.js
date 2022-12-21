@@ -90,14 +90,13 @@ const DetailProductSale = ({navigation,route}) => {
             formdata.append("quantity",item.quantity);
             formdata.append("removeImageIds",removeImageIds)
         } else {
-            setRemoveImageIds([])
             formdata.append("categoryIds",JSON.stringify(categorieIds));
             formdata.append("description",item.description);
             formdata.append("images","");
             formdata.append("name",item.name);
             formdata.append("price",item.price);
             formdata.append("quantity",item.quantity);
-            formdata.append("removeImageIds","")
+            formdata.append("removeImageIds",[0])
         }
         formdata.append("status","1");
         formdata.append("type","1");
