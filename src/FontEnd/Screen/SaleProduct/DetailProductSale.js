@@ -9,17 +9,17 @@ import SelectDropdown from 'react-native-select-dropdown';
 const {height, width} = Dimensions.get('window')
 
 const DetailProductSale = ({navigation,route}) => {
-    const [itemDetail, setItemDetail] = useState("");
-    const [imageForm, setImageForm] = useState(null);
-    const [categories, setCategories] = useState("");
-    const [categorie, setCategorie] = useState("");
-    const [prices, setPrices] = useState("");
-    const [quantitys, setQuantitys] = useState("");
-    const [categorieIds, setCategorieIds] = useState([]);
-    const [urlImage, setUrlImage] = useState("");
-    const [removeImageIds, setRemoveImageIds]= useState([]);
+    let [itemDetail, setItemDetail] = useState("");
+    let [imageForm, setImageForm] = useState(null);
+    let [categories, setCategories] = useState("");
+    let [categorie, setCategorie] = useState("");
+    let [prices, setPrices] = useState("");
+    let [quantitys, setQuantitys] = useState("");
+    let [categorieIds, setCategorieIds] = useState([]);
+    let [urlImage, setUrlImage] = useState("");
+    let [removeImageIds, setRemoveImageIds]= useState([]);
     let formdata = new FormData();
-    const [item, setItem] = useState({
+    let [item, setItem] = useState({
         description:"",
         name:"",
         price:"",
@@ -100,7 +100,6 @@ const DetailProductSale = ({navigation,route}) => {
         }
         formdata.append("status","1");
         formdata.append("type","1");
-        console.log(formdata)
         AsyncStorage.getItem('@token').then(async tokens => {
             fetch(`${API_URL}/item/edit?`+ new URLSearchParams({
                 id: route.params.id

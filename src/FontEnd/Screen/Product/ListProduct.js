@@ -18,19 +18,11 @@ const ListProduct = ({item}) => {
             <Text style={{fontWeight:'bold',fontSize:18,textAlign:'center'}}>
                 {item.name}
             </Text>
-            <Text style={{fontSize:14,color:"green"}}>{item.price}đ</Text>
+            <Text style={{fontSize:14,color:"green"}}>{item.price}đ <Text style={{fontSize:14,color:"red"}}>-{item.sale}</Text></Text>
         </TouchableOpacity>
         
     </View>
   )
-}
-
-function upMount(amount, setAmount) {
-    console.log(1);
-}
-
-function downMount(amount, setAmount) {
-
 }
 
 const styles = StyleSheet.create({

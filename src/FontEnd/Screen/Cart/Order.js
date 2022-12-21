@@ -3,6 +3,7 @@ import { SafeAreaView, Text, View, TouchableOpacity, FlatList, StyleSheet } from
 import { AntDesign } from '@expo/vector-icons';
 import { API_URL } from '../../utils/localhost';
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
+import ShoppingCart from './ShoppingCart';
 
 const Order = ({navigation}) => {
   const [cart, setCart] = useState("")
@@ -19,6 +20,7 @@ const Order = ({navigation}) => {
           }
         })
         const data = await response.json();
+        console.log(data.payload[0].items)
         setCart(data.payload)
       })
     }
@@ -38,24 +40,7 @@ const Order = ({navigation}) => {
         </View>
       </View>
 
-
-      <FlatList
-      data = {cart}
-      numColumns={1}
-      renderItem={({item}) => 
-        <TouchableOpacity style={{
-          backgroundColor: '#fff',
-          flex: 1, 
-          height: 150,
-          marginBottom: 20
-        }}
-        >
-        <Text>{item.sellerUser.fullname}</Text>
-        {item.items.map(function(item,i){
-          console.log(item)
-        })}
-      </TouchableOpacity>}
-    ></FlatList>
+      {/* <ShoppingCart /> */}
     </SafeAreaView>
 )}
 

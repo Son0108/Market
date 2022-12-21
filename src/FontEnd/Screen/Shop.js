@@ -1,9 +1,10 @@
-import { Text, View, SafeAreaView, Image, TextInput, FlatList, TouchableOpacity, Button } from 'react-native'
+import { Text, View, SafeAreaView, Image, TextInput, FlatList, TouchableOpacity, Button, Dimensions } from 'react-native'
 import { API_URL } from '../utils/localhost';
 import React, { useState, useEffect } from 'react'
 import ListProductSale from './SaleProduct/ListProductSale';
 import AsyncStorage from '@react-native-async-storage/async-storage'; 
 
+const {height, width} = Dimensions.get('window')
 const Shop = ({navigation}) => {
   const [items, setItems] = useState("");
   const [addNew, setAddNew] = useState(false);
@@ -27,9 +28,9 @@ const Shop = ({navigation}) => {
   },[addNew])
 
   return (
-    <SafeAreaView style={{backgroundColor: '#DDDDDD'}}>
+    <SafeAreaView style={{height:height - 50,backgroundColor: '#DDDDDD'}}>
      <View style={{height: '10%', marginTop: 40, borderBottomWidth: 1, borderBottomColor: '#9B9B9B', justifyContent:'center',alignItems:'center'}}>
-        <Text style={{fontSize: 40,  fontWeight: '700', marginTop: 20}}>CỬA HÀNG</Text>
+        <Text style={{fontSize: 40,  fontWeight: '700', marginTop: 20}}>KHO HÀNG</Text>
       </View>
 
       <View style={{height: '80%'}}>

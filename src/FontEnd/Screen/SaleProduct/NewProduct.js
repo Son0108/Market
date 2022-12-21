@@ -52,7 +52,6 @@ const NewProduct = ({navigation,route}) => {
         formdata.append("quantity",item.quantity);
         formdata.append("status","1");
         formdata.append("type","1");
-        console.log(formdata)
         AsyncStorage.getItem('@token').then(async tokens => {
             fetch(`${API_URL}/item/create`, {
                 method:'POST',
@@ -64,8 +63,8 @@ const NewProduct = ({navigation,route}) => {
             }})
             .then(response => {
                 if(response.status == 200) {
-                    navigation.goBack();
                     route.params.setAddNew(!route.params.addNew)
+                    navigation.goBack();
                 } else if (
                     response.status == 500) {
                 }
