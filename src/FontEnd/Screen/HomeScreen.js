@@ -33,7 +33,7 @@ const sanphams = [ {
       {
           id: 17,
           itemId: 7,
-          url: 'http://localhost:3000/v1/file/b6fd1a99-abc2-4817-a239-3e157a502fea.jpg',
+          url: 'http://localhost:3000/v1/file/0af0d6e4-496c-423b-9c61-90c63d42f883.jpg',
           type: 1,
           status: 1,
           createdAt: '2022-12-20T18:40:56.090Z',
@@ -66,7 +66,7 @@ const sanphams = [ {
       {
           id: 17,
           itemId: 7,
-          url: 'http://localhost:3000/v1/file/b6fd1a99-abc2-4817-a239-3e157a502fea.jpg',
+          url: 'http://localhost:3000/v1/file/0af0d6e4-496c-423b-9c61-90c63d42f883.jpg',
           type: 1,
           status: 1,
           createdAt: '2022-12-20T18:40:56.090Z',
@@ -99,7 +99,7 @@ const sanphams = [ {
       {
           id: 17,
           itemId: 7,
-          url: 'http://localhost:3000/v1/file/b6fd1a99-abc2-4817-a239-3e157a502fea.jpg',
+          url: 'http://localhost:3000/v1/file/0af0d6e4-496c-423b-9c61-90c63d42f883.jpg',
           type: 1,
           status: 1,
           createdAt: '2022-12-20T18:40:56.090Z',
@@ -132,7 +132,7 @@ const sanphams = [ {
       {
           id: 17,
           itemId: 7,
-          url: 'http://localhost:3000/v1/file/b6fd1a99-abc2-4817-a239-3e157a502fea.jpg',
+          url: 'http://localhost:3000/v1/file/0af0d6e4-496c-423b-9c61-90c63d42f883.jpg',
           type: 1,
           status: 1,
           createdAt: '2022-12-20T18:40:56.090Z',
@@ -184,7 +184,7 @@ const HomeScreen = ({navigation}) => {
           <Swiper style={{height: width/2}}
           showsButtons={false} autoplay={true} autoplayTimeout={4}
           >
-            {banners.map((banner) => {
+            {banners.map((banner,index) => {
               return (<Image resizeMode="contain" source={banner.image}/>)
             })}
           </Swiper>
@@ -193,6 +193,7 @@ const HomeScreen = ({navigation}) => {
           <Categories props={categories}/>
 
           <ItemRow props={sanphams}/>
+
         </ScrollView>
     </SafeAreaView>
   )

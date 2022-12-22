@@ -13,7 +13,7 @@ const Categories = ({props}) => {
         showsHorizontalScrollIndicator= {false}
     >
         {props ? props.map((item,index) => 
-            <TouchableOpacity onPress={() => console.log(item.id)} style={{ backgroundColor: '#FFFF', borderRadius: 5, padding: 10, marginTop: 10, marginRight: 5, marginLeft: 5}}>
+            <TouchableOpacity key={index} onPress={() => console.log(item.id)} style={{ backgroundColor: '#FFFF', borderRadius: 5, padding: 10, marginTop: 10, marginRight: 5, marginLeft: 5}}>
                 <Text style={{fontSize: 14}}>{item.name}</Text>
             </TouchableOpacity>
         ): ''}

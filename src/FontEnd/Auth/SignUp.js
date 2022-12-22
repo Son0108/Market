@@ -42,7 +42,7 @@ const SignUp = () => {
     formdata.append("phone",signUp.phone);
     formdata.append("status","1");
     formdata.append("type","1");
-    fetch(`${API_URL}/v1/auth/register`, {
+    fetch(`${API_URL}/auth/register`, {
       method:'POST',
       body:formdata,
       headers: {
@@ -50,7 +50,6 @@ const SignUp = () => {
         Accept: "application/json",
       }})
     .then(response => {
-        console.log(response.status)
         if(response.status == 200) {
           navigation.navigate('SignupSuccess');
           setAlert(false);

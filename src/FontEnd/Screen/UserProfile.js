@@ -8,20 +8,42 @@ import { useNavigation } from '@react-navigation/native';
 const UserProfile = () => {
   const navigation = useNavigation();
   const [user, setUser] = useState("")
+  const [carts, setCarts] = useState("")
+  let [urlImage, setUrlImage] = useState("");
+  let showCart = false;
   useEffect(()=> {
     AsyncStorage.getItem('@user').then((value) => {
       setUser(JSON.parse(value));
+      setUrlImage(JSON.parse(value).avatar.substr(24,JSON.parse(value).avatar.length - 24))
     })
   },[])
-  const url_image = user.avatar.substr(24,user.avatar.length - 24)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      AsyncStorage.getItem('@token').then(async tokens => {
+        const response = await fetch(`${API_URL}/cart/get-buy-cart?` +  new URLSearchParams({
+          pageNumber: 1,
+          pageSize: 10
+        }),{
+          method: 'GET',
+          headers: {
+            authorization:"Bearer "+tokens.replace(/"/g,'')
+          }
+        })
+        const data = await response.json();
+        setCarts(data.payload)
+      })
+    }
+    fetchData();
+  },[showCart])
+
   return (
     <SafeAreaView style={{margin: 20}}>
       <View style= {{ marginTop: 70}}>
         <Text style={{fontSize: 36, fontWeight: '700'}}>My profile</Text>
       </View>
-
       <View style={{flexDirection:'row', marginTop: 30}}>
-        <Image style={{width: 80, height: 80, borderRadius: 50}} ></Image>
+      <Image style={{width: 80, height: 80, borderRadius: 50}} source={{uri:`${API_URL}${urlImage}`}} ></Image>
         <View style={{marginLeft: 20, marginTop: 10}}>
           <Text style={{fontSize: 20, fontWeight: '500'}}>{user.fullname}</Text>
           <Text style={{color: '#9B9B9B'}}>{user.email}</Text>
@@ -29,7 +51,7 @@ const UserProfile = () => {
       </View>
 
       <View>
-        <TouchableOpacity onPress={() => navigation.navigate('Order')} style={{flexDirection: 'row', height: 50, marginTop: 40, borderBottomWidth: 1, borderBottomColor:'#9B9B9B'}}>
+        <TouchableOpacity onPress={() => navigation.navigate('Order',{carts:carts, showCart: showCart})} style={{flexDirection: 'row', height: 50, marginTop: 40, borderBottomWidth: 1, borderBottomColor:'#9B9B9B'}}>
           <View style={{width:'90%'}}>
             <Text style={{fontSize: 20, fontWeight: '500'}}>Giỏ hàng</Text>
             <Text style={{color: '#9B9B9B'}}>Bạn đang có đơn hàng</Text>
