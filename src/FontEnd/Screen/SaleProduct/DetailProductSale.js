@@ -114,7 +114,6 @@ const DetailProductSale = ({navigation,route}) => {
             .then(response => {
                 if(response.status == 200) {
                     navigation.goBack();
-                    route.params.setAddNew(!route.params.addNew)
                 } else if (response.status == 500) {
                     console.log("NOK")
                 }
@@ -137,7 +136,6 @@ const DetailProductSale = ({navigation,route}) => {
             .then(response => {
                 if(response.status == 200) {
                     navigation.goBack();
-                    route.params.setAddNew(!route.params.addNew)
                 } else if (response.status == 500) {
                     console.log("NOK")
                 }

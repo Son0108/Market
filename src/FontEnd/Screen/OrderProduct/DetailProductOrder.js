@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, Image, StyleSheet, View, Dimensions, ScrollView } from 'react-native'
+import { Text, TouchableOpacity, Image, StyleSheet, View, Dimensions, ScrollView, Alert } from 'react-native'
 import React, { useState } from 'react'
 import { AntDesign } from '@expo/vector-icons';
 import { API_URL } from '../../utils/localhost';
@@ -7,34 +7,37 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 var {height, width} = Dimensions.get('window');
 const DetailProductOrder = ({navigation, route}) => {
     let [count, setCount] = useState(1);
-    let url_image = route.params.item.images[0].url.substr(24,route.params.item.images[0].url.length - 24)
+    let url_image = route.params.item.imageURL.substr(24,route.params.item.imageURL.length - 24)
 
     let addCart = () => {
+      const arrayItem={items:[]}
       const item = {
         id:route.params.item.id,
         quantity:count
       }
-      console.log(item)
-      // AsyncStorage.getItem('@token').then(async tokens => {
-      //     fetch(`${API_URL}/cart/create`, 
-      //     {
-      //       body:JSON.stringify(item),
-      //       method:'POST',
-      //       headers: {
-      //           "Content-Type": "multipart/form-data",
-      //           Accept: "application/json",
-      //           authorization:"Bearer "+tokens.replace(/"/g,'')
-      //     }})
-      //     .then(response => {
-      //         if(response.status == 200) {
-      //             navigation.goBack();
-      //             route.params.setAddNew(!route.params.addNew)
-      //         } else if (response.status == 500) {
-      //             console.log("NOK")
-      //         }
-      //     }).catch(err => {
-      //         console.log(err)
-      // })})
+      arrayItem.items.push(item)
+      AsyncStorage.getItem('@token').then(async tokens => {
+          fetch(`${API_URL}/cart/create`,{
+            method:'POST',
+            body:JSON.stringify(arrayItem),
+            headers: {
+              'Content-Type': 'application/json',
+              authorization:"Bearer "+tokens.replace(/"/g,'')
+            }})
+          .then(response => {
+              if(response.status == 200) {
+                setTimeout(() => {
+                  Alert.alert("Thành công");
+                }, 1000);
+                navigation.goBack();
+              } else if (response.status == 500) {
+                setTimeout(() => {
+                  Alert.alert("Thất bại");
+                }, 1000);
+              }
+          }).catch(err => {
+              console.log(err)
+      })})
   }
   return (
     <ScrollView style={{height:height}}>

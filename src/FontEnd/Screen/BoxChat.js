@@ -1,7 +1,7 @@
-import { View, Text, SafeAreaView, TouchableOpacity, FlatList } from 'react-native'
+import { View, Text, SafeAreaView, FlatList } from 'react-native'
+import { API_URL } from '../utils/localhost';
 import React from 'react'
 import {useNavigation} from '@react-navigation/native';
-import Messenger from './Chat/Messenger';
 import ListMessenger from './Chat/ListMessenger';
 
 const messages = [{

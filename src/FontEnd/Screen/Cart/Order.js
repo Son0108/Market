@@ -1,12 +1,32 @@
-import React from 'react'
-import { SafeAreaView, Text, View, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import React, {useState, useEffect} from 'react'
+import { SafeAreaView, Text, View, TouchableOpacity, StyleSheet, ScrollView, Dimensions } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { API_URL } from '../../utils/localhost';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import ShoppingCart from './ShoppingCart';
 
+const {height, width} = Dimensions.get('window')
 const Order = ({navigation,route}) => {
-  let showCart = route.params.showCart;
-  let carts = route.params.carts;
+  const [carts, setCarts] = useState("")
+  const [handleDelete, setHandleDelete] = useState(false)
+  useEffect(() => {
+    fetchCart();
+  },[handleDelete])
+  const fetchCart = async () => {
+    AsyncStorage.getItem('@token').then(async tokens => {
+      const response = await fetch(`${API_URL}/cart/get-buy-cart?` +  new URLSearchParams({
+        pageNumber: 1,
+        pageSize: 10
+      }),{
+        method: 'GET',
+        headers: {
+          authorization:"Bearer "+tokens.replace(/"/g,'')
+        }
+      })
+      const data = await response.json();
+      setCarts(data.payload)
+    })
+  }
   return (
     <SafeAreaView style={{ margin: 20}}>
       <View style={{flexDirection:'row'}}>
@@ -18,9 +38,12 @@ const Order = ({navigation,route}) => {
           <Text style={{fontSize: 36, fontWeight: '700'}}>Giỏ hàng</Text>
         </View>
       </View>
-      <ScrollView>
+      <ScrollView
+        style={{height: height-150}}
+        showsVerticalScrollIndicator={false}
+      >
         {carts?carts.map((cart,index) => 
-          <ShoppingCart key={index} cart={cart} showCart={showCart} />
+          <ShoppingCart key={cart.id} cart={cart} state={cart.status} handleDelete={handleDelete} setHandleDelete={setHandleDelete}/>
         ):''}
       </ScrollView>
     </SafeAreaView>

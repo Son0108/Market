@@ -3,7 +3,7 @@ import React from 'react'
 import { API_URL } from '../../utils/localhost';
 import { useNavigation } from '@react-navigation/native';
 var {height, width} = Dimensions.get('window');
-const ListProductSale = ({id, item, addNew, setAddNew}) => {
+const ListProductSale = ({id, item}) => {
     const navigation = useNavigation();
     const url_image = item.images[0].url.substr(24,item.images[0].url.length - 24)
     
@@ -11,9 +11,7 @@ const ListProductSale = ({id, item, addNew, setAddNew}) => {
     <TouchableOpacity
         style={styles.divProductSale}
         onPress={() => navigation.navigate('DetailProductSale', {
-          id:id,
-          addNew:addNew,
-          setAddNew:setAddNew})}
+          id:id})}
     >
         <Image
         style={styles.imageProductSale}

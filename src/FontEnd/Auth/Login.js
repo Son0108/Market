@@ -55,7 +55,7 @@ const Login = () => {
               <Text style={{fontSize: 16, marginLeft: 160}}>Bạn chưa có tài khoản?  <AntDesign name="arrowright" size={24} color="#DB3022" /></Text>   
           </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => loginPost()} style={{marginBottom: 300, marginLeft: 25,backgroundColor: '#DB3022',width: 360, height:48, borderRadius: 25, justifyContent:'center', alignItems: 'center'}}>
+      <TouchableOpacity onPress={() => loginPost()} style={{marginBottom: 300, backgroundColor: '#DB3022',marginLeft: 30,width: width - 60, height:48, borderRadius: 25, justifyContent:'center', alignItems: 'center'}}>
           <Text style={{color: '#FFF', fontSize: 20, fontWeight:'600' }}>ĐĂNG NHẬP</Text>
       </TouchableOpacity>
     </ScrollView>

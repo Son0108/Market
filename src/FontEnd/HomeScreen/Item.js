@@ -1,12 +1,13 @@
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions,Image } from 'react-native'
-import { API_URL } from './localhost'
+import { API_URL } from '../utils/localhost'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 const {height, width} = Dimensions.get('window')
 const Item = ({props}) => {
   const navigation = useNavigation();
-  const url_image = props.images[0].url.substr(24,props.images[0].url.length - 24)
+  // console.log(props)
+  const url_image = props.imageURL.substr(24,props.imageURL.length - 24)
   return (
     <TouchableOpacity 
         style={styles.divProductSale}

@@ -5,7 +5,6 @@ import Login from "../Auth/Login";
 import SignUp from "../Auth/SignUp";
 import SignupSuccess from '../Auth/SignupSuccess';
 import Order from '../Screen/Cart/Order';
-import DetailOrder from '../Screen/Cart/DetailOrder';
 import Messenger from '../Screen/Chat/Messenger';
 import DetailProductOrder from '../Screen/OrderProduct/DetailProductOrder';
 import DetailProductSale from '../Screen/SaleProduct/DetailProductSale';
@@ -24,7 +23,6 @@ function StackNav() {
       <Stack.Screen name="Signup" component={SignUp} />
       <Stack.Screen name="SignupSuccess" component={SignupSuccess}/>
       <Stack.Screen name="Order" component={Order}/>
-      <Stack.Screen name="OrderDetail" component={DetailOrder}/>
       <Stack.Screen name="Newproduct" component={NewProduct}/>
       <Stack.Screen name="Messenger" component={Messenger}/>
       <Stack.Screen name="DetailProductOrder" component={DetailProductOrder}/>

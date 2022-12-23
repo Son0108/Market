@@ -1,12 +1,13 @@
-import { View, Text, TouchableOpacity, Dimensions } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, Alert } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_URL } from '../../utils/localhost';
 import React, { useState } from 'react'
 import ItemCart from './ItemCart'
 import { useNavigation } from '@react-navigation/native';
+import {status} from '../../utils/status'
 
 const {height, width} = Dimensions.get('window')
-const ShoppingCart = ({cart, showCart}) => {
+const ShoppingCart = ({cart, state, handleDelete, setHandleDelete}) => {
   const navigation = useNavigation();
   const [show, setShow] = useState(false);
 
@@ -20,19 +21,19 @@ const ShoppingCart = ({cart, showCart}) => {
               authorization:"Bearer "+tokens.replace(/"/g,'')
       }})
       .then(response => {
-          if(response.status == 200) {
-              showCart = !showCart;
-              console.log("okS")
-          } else if (response.status == 500) {
-              console.log("NOK")
-          }
+        if(response.status == 200) {
+          setHandleDelete(!handleDelete);
+          setShow(false)
+        } else if (response.status == 500) {
+          console.log("NOK")
+        }
       }).catch(err => {
           console.log(err)
-})})
-}
+})})}
+
+  var filtered = status.filter(stat => stat.id == state)
   return (
-    <View >
-      <View style={{backgroundColor:'#FFFF', borderRadius:10, padding: 20}}>
+      <View style={{backgroundColor:'#FFFF', borderRadius:10, padding: 20, marginBottom: 10}}>
         <Text style={{fontSize: 20, fontWeight:'500'}}>{cart.sellerUser.fullname}</Text>
         <View style={{borderBottomWidth: 1, flexDirection: 'row',justifyContent:'space-between'}}>
           <Text style={{color:'#BBBBBB',fontSize: 14}}>{cart.sellerUser.email}</Text>
@@ -45,6 +46,7 @@ const ShoppingCart = ({cart, showCart}) => {
             {cart.items.map((item,index) => 
               <ItemCart item={item}/>
             )}
+            <Text style={{color: '#F4A460'}}>{filtered[0].value}</Text>
             <Text style={{color:'red'}}>Tổng tiền : {cart.amount}đ</Text>
           </View>
           
@@ -57,7 +59,6 @@ const ShoppingCart = ({cart, showCart}) => {
         </View>
         
       </View>
-    </View>
   )
 }
 

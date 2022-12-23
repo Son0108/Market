@@ -1,145 +1,14 @@
-import {  Image, SafeAreaView, Text, TouchableOpacity, View, TextInput, Dimensions, ScrollView } from 'react-native'
+import {  Image, SafeAreaView, RefreshControl, TouchableOpacity, View, TextInput, Dimensions, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { API_URL } from '../utils/localhost';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { FontAwesome } from '@expo/vector-icons';
 import Swiper from 'react-native-swiper'
-import Categories from '../utils/Categories';
-import ItemRow from '../utils/ItemRow';
+import Categories from '../HomeScreen/Categories';
+import ItemRow from '../HomeScreen/ItemRow';
 
 var {height, width} = Dimensions.get('window');
-const sanphams = [ {
-  id: 1,
-  name: "naruto",
-  description: "ewewe",
-  status: 1,
-  type: 1,
-  price: 34424,
-  quantity: 54,
-  createdAt: '2022-12-20T18:39:18.585Z',
-  updatedAt: '2022-12-20T18:40:56.090Z',
-  categories: [
-    {
-        id: 2,
-        name: "Tủ lạnh",
-        description: "Tủ Lạnh",
-        type: 1,
-        status: 1,
-        createdAt: "2022-12-08T05:12:20.363Z",
-        updatedAt: "2022-12-08T05:12:20.363Z"
-    }
-],
-  images: [
-      {
-          id: 17,
-          itemId: 7,
-          url: 'http://localhost:3000/v1/file/0af0d6e4-496c-423b-9c61-90c63d42f883.jpg',
-          type: 1,
-          status: 1,
-          createdAt: '2022-12-20T18:40:56.090Z',
-          updatedAt: '2022-12-20T18:40:56.090Z'
-      }
-  ]
-},
-{
-  id: 2,
-  name: "onepice",
-  description: "ewewe",
-  status: 1,
-  type: 1,
-  price: 34424,
-  quantity: 54,
-  createdAt: '2022-12-20T18:39:18.585Z',
-  updatedAt: '2022-12-20T18:40:56.090Z',
-  categories: [
-    {
-        id: 2,
-        name: "Tủ lạnh",
-        description: "Tủ Lạnh",
-        type: 1,
-        status: 1,
-        createdAt: "2022-12-08T05:12:20.363Z",
-        updatedAt: "2022-12-08T05:12:20.363Z"
-    }
-],
-  images: [
-      {
-          id: 17,
-          itemId: 7,
-          url: 'http://localhost:3000/v1/file/0af0d6e4-496c-423b-9c61-90c63d42f883.jpg',
-          type: 1,
-          status: 1,
-          createdAt: '2022-12-20T18:40:56.090Z',
-          updatedAt: '2022-12-20T18:40:56.090Z'
-      }
-  ]
-},
-{
-  id: 3,
-  name: "alime",
-  description: "ewewe",
-  status: 1,
-  type: 1,
-  price: 34424,
-  quantity: 5,
-  createdAt: '2022-12-20T18:39:18.585Z',
-  updatedAt: '2022-12-20T18:40:56.090Z',
-  categories: [
-    {
-        id: 2,
-        name: "Tủ lạnh",
-        description: "Tủ Lạnh",
-        type: 1,
-        status: 1,
-        createdAt: "2022-12-08T05:12:20.363Z",
-        updatedAt: "2022-12-08T05:12:20.363Z"
-    }
-],
-  images: [
-      {
-          id: 17,
-          itemId: 7,
-          url: 'http://localhost:3000/v1/file/0af0d6e4-496c-423b-9c61-90c63d42f883.jpg',
-          type: 1,
-          status: 1,
-          createdAt: '2022-12-20T18:40:56.090Z',
-          updatedAt: '2022-12-20T18:40:56.090Z'
-      }
-  ]
-},
-{
-  id: 4,
-  name: "avatar4",
-  description: "ewewe",
-  status: 1,
-  type: 1,
-  price: 34424,
-  quantity: 54,
-  createdAt: '2022-12-20T18:39:18.585Z',
-  updatedAt: '2022-12-20T18:40:56.090Z',
-  categories: [
-    {
-        id: 2,
-        name: "Tủ lạnh",
-        description: "Tủ Lạnh",
-        type: 1,
-        status: 1,
-        createdAt: "2022-12-08T05:12:20.363Z",
-        updatedAt: "2022-12-08T05:12:20.363Z"
-    }
-],
-  images: [
-      {
-          id: 17,
-          itemId: 7,
-          url: 'http://localhost:3000/v1/file/0af0d6e4-496c-423b-9c61-90c63d42f883.jpg',
-          type: 1,
-          status: 1,
-          createdAt: '2022-12-20T18:40:56.090Z',
-          updatedAt: '2022-12-20T18:40:56.090Z'
-      }
-  ]
-}]
+
 const banners = [{
   image: require('../assets/Banner/banner.jpg')
 },{
@@ -152,28 +21,54 @@ const banners = [{
 
 const HomeScreen = ({navigation}) => {
   let [categories, setCategories] = useState("");
-  
-    useEffect(() => {
-        const fetchData = async () => {
-            AsyncStorage.getItem('@token').then(async tokens => {
-            const response = await fetch(`${API_URL}/category/get-all`,{
-                method: 'GET',
-                headers: {
-                authorization:"Bearer "+tokens.replace(/"/g,'')
-                }
-            })
-            const data = await response.json();
-            setCategories(data.payload)
-            })
+  let [items, setItems] = useState("")
+  let [categorieId, setCategorieId] = useState([1]);
+  let [textSearch, setTextSearch] = useState("");
+  useEffect(() => {
+    fetchDataItem();
+  },[categorieId])
+
+  const fetchDataItem = async () => {
+    AsyncStorage.getItem('@token').then(async tokens => {
+      const response = await fetch(`${API_URL}/item/search-items?` +  new URLSearchParams({
+        categoryId:categorieId,
+        pageNumber: 1,
+        pageSize: 10,
+        searchText:textSearch,
+        sortField:"",
+        sortType:"asc"
+      }),{
+        method: 'GET',
+        headers: {
+          authorization:"Bearer "+tokens.replace(/"/g,'')
         }
-        fetchData();
-    },[])
-  
+      })
+      const item = await response.json();
+      setItems(item.payload)
+    })
+  }
+
+  useEffect(() => {
+      const fetchData = async () => {
+          AsyncStorage.getItem('@token').then(async tokens => {
+          const response = await fetch(`${API_URL}/category/get-all`,{
+              method: 'GET',
+              headers: {
+              authorization:"Bearer "+tokens.replace(/"/g,'')
+              }
+          })
+          const data = await response.json();
+          setCategories(data.payload)
+          })
+      }
+      fetchData();
+  },[])
+
   return (
     <SafeAreaView style={{height:height - 50,backgroundColor: '#DDDDDD'}}>
         <View style={{marginTop: 40, marginBottom: 20, flexDirection: 'row'}}>
-          <TextInput style={{paddingLeft: 10,paddingRight: 10,backgroundColor:'#FFFF', height: 60, width: '90%', borderRadius: 10, marginLeft: '5%'}} placeholder='Nhập sản phẩm cần tìm'></TextInput>
-          <TouchableOpacity>
+          <TextInput onChangeText={name => setTextSearch(name)} style={{paddingLeft: 10,paddingRight: 10,backgroundColor:'#FFFF', height: 60, width: '90%', borderRadius: 10, marginLeft: '5%'}} placeholder='Nhập sản phẩm cần tìm'></TextInput>
+          <TouchableOpacity onPress={() => setCategorieId([])}>
             <FontAwesome style={{marginLeft: -50, marginTop: 15}} name="search" size={30} color="black" />
           </TouchableOpacity>
         </View>
@@ -190,9 +85,9 @@ const HomeScreen = ({navigation}) => {
           </Swiper>
           
           {/* categorie */}
-          <Categories props={categories}/>
+          <Categories props={categories} categoriesId= {setCategorieId}/>
 
-          <ItemRow props={sanphams}/>
+          <ItemRow props={items}/>
 
         </ScrollView>
     </SafeAreaView>

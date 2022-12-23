@@ -63,7 +63,7 @@ const NewProduct = ({navigation,route}) => {
             }})
             .then(response => {
                 if(response.status == 200) {
-                    route.params.setAddNew(!route.params.addNew)
+
                     navigation.goBack();
                 } else if (
                     response.status == 500) {
