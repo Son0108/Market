@@ -8,12 +8,14 @@ import ShoppingCart from './ShoppingCart';
 const {height, width} = Dimensions.get('window')
 const Order = ({navigation,route}) => {
   const [carts, setCarts] = useState("")
+  const [token, setToken] = useState("")
   const [handleDelete, setHandleDelete] = useState(false)
   useEffect(() => {
     fetchCart();
   },[handleDelete])
   const fetchCart = async () => {
     AsyncStorage.getItem('@token').then(async tokens => {
+      setToken(tokens)
       const response = await fetch(`${API_URL}/cart/get-buy-cart?` +  new URLSearchParams({
         pageNumber: 1,
         pageSize: 10
@@ -43,7 +45,7 @@ const Order = ({navigation,route}) => {
         showsVerticalScrollIndicator={false}
       >
         {carts?carts.map((cart,index) => 
-          <ShoppingCart key={cart.id} cart={cart} state={cart.status} handleDelete={handleDelete} setHandleDelete={setHandleDelete}/>
+          <ShoppingCart key={cart.id} cart={cart} state={cart.status} tokens={token} handleDelete={handleDelete} setHandleDelete={setHandleDelete}/>
         ):''}
       </ScrollView>
     </SafeAreaView>

@@ -6,7 +6,7 @@ const ItemRow = ({props}) => {
   return (
     <View style={styles.container}>
       {props ? props.map((item,index) => 
-            <Item props={item}/>
+            <Item key={index} props={item}/>
         ): ''}
     </View>
   )

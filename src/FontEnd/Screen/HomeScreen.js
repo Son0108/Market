@@ -19,7 +19,7 @@ const banners = [{
   image: require('../assets/Banner/banner4.jpg')
 },]
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({navigation,route}) => {
 
   let [categories, setCategories] = useState("");
   let [items, setItems] = useState("")

@@ -7,10 +7,10 @@ import { useNavigation } from '@react-navigation/native';
 import {status} from '../../utils/status'
 
 const {height, width} = Dimensions.get('window')
-const ShoppingCart = ({cart, state, handleDelete, setHandleDelete}) => {
+const ShoppingCart = ({cart, state, tokens, handleDelete, setHandleDelete}) => {
+  console.log(cart)
   const navigation = useNavigation();
   const [show, setShow] = useState(false);
-
   let deleteCart = () => {
     AsyncStorage.getItem('@token').then(async tokens => {
       fetch(`${API_URL}/cart/buyer-delete?`+ new URLSearchParams({
@@ -34,7 +34,11 @@ const ShoppingCart = ({cart, state, handleDelete, setHandleDelete}) => {
   var filtered = status.filter(stat => stat.id == state)
   return (
       <View style={{backgroundColor:'#FFFF', borderRadius:10, padding: 20, marginBottom: 10}}>
-        <Text style={{fontSize: 20, fontWeight:'500'}}>{cart.sellerUser.fullname}</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Messenger',{
+        selectMessage: cart.sellerUser,
+        tokens:tokens})}>
+          <Text style={{fontSize: 20, fontWeight:'500'}}>{cart.sellerUser.fullname}</Text>
+        </TouchableOpacity>
         <View style={{borderBottomWidth: 1, flexDirection: 'row',justifyContent:'space-between'}}>
           <Text style={{color:'#BBBBBB',fontSize: 14}}>{cart.sellerUser.email}</Text>
           <TouchableOpacity onPress={() => setShow(!show)}>
@@ -44,7 +48,7 @@ const ShoppingCart = ({cart, state, handleDelete, setHandleDelete}) => {
         <View style={{flexDirection:'row'}}>
           <View style={{width: width-150}}>
             {cart.items.map((item,index) => 
-              <ItemCart item={item}/>
+              <ItemCart key={index} item={item}/>
             )}
             <Text style={{color: '#F4A460'}}>{filtered[0].value}</Text>
             <Text style={{color:'red'}}>Tổng tiền : {cart.amount}đ</Text>
