@@ -20,9 +20,10 @@ const banners = [{
 },]
 
 const HomeScreen = ({navigation}) => {
+
   let [categories, setCategories] = useState("");
   let [items, setItems] = useState("")
-  let [categorieId, setCategorieId] = useState([1]);
+  let [categorieId, setCategorieId] = useState([]);
   let [textSearch, setTextSearch] = useState("");
   useEffect(() => {
     fetchDataItem();
